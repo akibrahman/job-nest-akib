@@ -1,6 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import loader from "/infinite.svg";
 
 const TabWiseJobs = () => {
@@ -54,7 +55,11 @@ const TabWiseJobs = () => {
                 <span>{job.salaryRangeEnd}</span>
               </p>
               <p>Applicants Number: {job.applicants}</p>
-              <button>View Details - </button>
+              <Link to={`/job-details/${job._id}`}>
+                <button className="bg-purple-500 text-white font-semibold px-4 py-1 rounded-lg mt-4 active:scale-90 duration-300 cursor-pointer select-none">
+                  View Details
+                </button>
+              </Link>
             </div>
           ))}
         </div>

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import AddJob from "./AddJob";
 import AllJobs from "./AllJobs";
+import AppliedJobs from "./AppliedJobs";
 import JobDetailsPage from "./JobDetailsPage";
 import Login from "./Login";
 import MyJobs from "./MyJobs";
@@ -56,6 +57,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyJobs></MyJobs>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/applied-jobs",
+        element: (
+          <PrivateRoute>
+            <AppliedJobs></AppliedJobs>
           </PrivateRoute>
         ),
       },

@@ -17,18 +17,20 @@ const NavBar = () => {
           <Link to="/">
             <p>Home</p>
           </Link>
-          <Link to="all-jobs">
+          <Link to="/all-jobs">
             <p>All Jobs</p>
           </Link>
           {user && (
             <>
-              <Link to="add-a-job">
+              <Link to="/add-a-job">
                 <p>Add a Job</p>
               </Link>
-              <Link to="my-jobs">
+              <Link to="/my-jobs">
                 <p>My Jobs</p>
               </Link>
-              <p>Applied Jobs</p>
+              <Link to="/applied-jobs">
+                <p>Applied Jobs</p>
+              </Link>
             </>
           )}
         </div>

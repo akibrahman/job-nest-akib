@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const un = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        console.log(currentUser);
+        // console.log(currentUser);
         setUser(currentUser);
         setPrivateRouteLoader(false);
       } else {

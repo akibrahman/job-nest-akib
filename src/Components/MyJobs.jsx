@@ -14,7 +14,32 @@ const MyJobs = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [user.email]);
+
+  //! Delete
+  const handleDelete = (id) => {
+    //Delete from allJobs
+    axios
+      .delete(`http://localhost:5500/delete-my-job/${id}`)
+      .then((res) => {
+        if (res.data.deletedCount > 0) {
+          const remaining = myJobs.filter((job) => job._id !== id);
+          setMyJobs(remaining);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // Delete from appliedJobs
+    axios
+      .delete(`http://localhost:5500/delete-my-job-from-applied-job/${id}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="w-[85%] mx-auto my-10">
       <p className="text-4xl text-center">My Created Jobs - {myJobs?.length}</p>
@@ -35,6 +60,12 @@ const MyJobs = () => {
                   <span>{job.salaryRangeEnd}</span>
                 </p>
                 <p>Applicants Number: {job.applicants}</p>
+                <button
+                  onClick={() => handleDelete(job._id)}
+                  className="bg-red-500 w-9 h-9 rounded-full"
+                >
+                  X
+                </button>
               </div>
             ))}
           </div>

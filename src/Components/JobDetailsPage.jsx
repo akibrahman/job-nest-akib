@@ -58,6 +58,7 @@ const JobDetailsPage = () => {
                   jobID: _id,
                   applicantName: user.displayName,
                   applicantEmail: user.email,
+                  applicationDate: moment(),
                   authorName,
                   authorEmail,
                   jobTitle,
