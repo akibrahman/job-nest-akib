@@ -9,35 +9,99 @@ const AddJob = () => {
   const { user } = useContext(AuthContext);
   const [selectedDate, setSelectedDate] = useState(null);
 
+  const [companyImg, setCompanyImg] = useState(null);
+  const [companyImgPreview, setCompanyImgPreview] = useState(null);
+  const [bannerImg, setBannerImg] = useState(null);
+  const [bannerImgPreview, setBannerImgPreview] = useState(null);
+
+  //   const [companyImgUrl, setCompanyImgUrl] = useState(null);
+  //   const [bannerImgUrl, setBannerImgUrl] = useState(null);
+
+  //! BASE64 Convertor
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
   //! Handle Submit
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const data = event.target;
-    const jobdata = {
-      authorName: user.displayName,
-      authorEmail: user.email,
-      jobTitle: data.jobTitle.value,
-      jobCategory: data.category.value,
-      jobPostingDate: data.jobPostingDate.value,
-      applicationDeadline: selectedDate,
-      applicants: 0,
-      salaryRangeStart: parseInt(data.salaryRangeStart.value),
-      salaryRangeEnd: parseInt(data.salaryRangeEnd.value),
-    };
+    const companyImgData = new FormData();
+    companyImgData.append("image", companyImg);
+    const bannerImgData = new FormData();
+    bannerImgData.append("image", bannerImg);
+
     axios
-      .post(`${import.meta.env.VITE_serverUrl}/add-a-job`, jobdata)
+      .post(
+        "https://api.imgbb.com/1/upload?key=f8c09563e2c3334b8e3c08a6de7d30df",
+        companyImgData
+      )
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.data.display_url);
+        let a = res.data.data.display_url;
+        axios
+          .post(
+            "https://api.imgbb.com/1/upload?key=f8c09563e2c3334b8e3c08a6de7d30df",
+            bannerImgData
+          )
+          .then((res) => {
+            console.log(res.data.data.display_url);
+            let b = res.data.data.display_url;
+            const jobdata = {
+              authorName: user.displayName,
+              authorEmail: user.email,
+              jobTitle: data.jobTitle.value,
+              companyImgURL: a,
+              bannerImgURL: b,
+              jobCategory: data.category.value,
+              jobPostingDate: data.jobPostingDate.value,
+              applicationDeadline: selectedDate,
+              applicants: 0,
+              salaryRangeStart: parseInt(data.salaryRangeStart.value),
+              salaryRangeEnd: parseInt(data.salaryRangeEnd.value),
+            };
+            axios
+              .post(`${import.meta.env.VITE_serverUrl}/add-a-job`, jobdata)
+              .then((res) => {
+                console.log(res.data);
+                alert("Added");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
+            console.log("Banner Photo Error - ", error);
+          });
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Company Photo Error - ", error);
       });
   };
-
   //! Function to handle date selection
   const handleDateChange = (date) => {
     setSelectedDate(date);
+  };
+
+  //! Image Related
+  const handleCompanyImgInput = async (event) => {
+    setCompanyImg(event.target.files[0]);
+    const base64 = await convertBase64(event.target.files[0]);
+    setCompanyImgPreview(base64);
+  };
+  const handleBannerImgInput = async (event) => {
+    setBannerImg(event.target.files[0]);
+    const base64 = await convertBase64(event.target.files[0]);
+    setBannerImgPreview(base64);
   };
   return (
     <div className="border-2 p-5 w-[70%] mx-auto my-16">
@@ -55,6 +119,28 @@ const AddJob = () => {
             className="bg-purple-500 text-white font-semibold px-3 py-2 rounded-lg"
             type="text"
             name="jobTitle"
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          <label htmlFor="">Company Logo</label>
+          <input onChange={handleCompanyImgInput} type="file" />
+          <img
+            className={`${
+              companyImgPreview ? "w-12 h-12 rounded-full border-2" : ""
+            }`}
+            src={companyImgPreview}
+            alt=""
+          />
+        </div>
+        <div className="flex items-center gap-4">
+          <label htmlFor="">Banner</label>
+          <input onChange={handleBannerImgInput} type="file" />
+          <img
+            className={`${
+              bannerImgPreview ? "w-28 h-14 rounded-md border-2" : ""
+            }`}
+            src={bannerImgPreview}
+            alt=""
           />
         </div>
         <div className="flex items-center gap-4">
