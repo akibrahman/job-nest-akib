@@ -40,7 +40,7 @@ const EditJob = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log("This is the upgration error", error);
       });
     axios
       .patch(`http://localhost:5500/update-jobs/${id}`, updatedJob)
