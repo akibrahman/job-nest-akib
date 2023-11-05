@@ -25,7 +25,16 @@ const JobDetailsPage = () => {
       alert("Deadline Over");
       return;
     }
-    alert("Done");
+    axios
+      .patch(`http://localhost:5500/applicants-count/${job._id}`, {
+        previousCount: parseInt(job.applicants),
+      })
+      .then((res) => {
+        console.log(res.data, " - Success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div>
