@@ -9,6 +9,7 @@ const JobDetailsPage = () => {
   const { user } = useContext(AuthContext);
   const params = useParams();
   const [job, setJob] = useState(null);
+  const [reloader, setReloader] = useState(true);
   useEffect(() => {
     axios
       .get(`http://localhost:5500/job-details/${params.id}`)
@@ -16,7 +17,7 @@ const JobDetailsPage = () => {
         setJob(res.data);
       })
       .catch((error) => console.log(error));
-  }, [params.id]);
+  }, [params.id, reloader]);
   const apply = () => {
     if (user.email === job.authorEmail) {
       alert("You are the Owner of this Post");
@@ -26,15 +27,62 @@ const JobDetailsPage = () => {
       return;
     }
     axios
-      .patch(`http://localhost:5500/applicants-count/${job._id}`, {
-        previousCount: parseInt(job.applicants),
+      .post("http://localhost:5500/get-a-applied-job", {
+        email: user.email,
+        id: job._id,
       })
       .then((res) => {
-        console.log(res.data, " - Success");
+        if (typeof res.data == "object") {
+          alert("Can not be Applied");
+          return;
+        }
+        if (typeof res.data == "string") {
+          axios
+            .patch(`http://localhost:5500/applicants-count/${job._id}`, {
+              previousCount: parseInt(job.applicants),
+            })
+            .then((res) => {
+              if (res.data.modifiedCount > 0) {
+                const {
+                  _id,
+                  authorName,
+                  authorEmail,
+                  jobTitle,
+                  jobCategory,
+                  jobPostingDate,
+                  applicationDeadline,
+                  salaryRangeStart,
+                  salaryRangeEnd,
+                } = job;
+                const data = {
+                  jobID: _id,
+                  applicantName: user.displayName,
+                  applicantEmail: user.email,
+                  authorName,
+                  authorEmail,
+                  jobTitle,
+                  jobCategory,
+                  jobPostingDate,
+                  applicationDeadline,
+                  salaryRangeStart,
+                  salaryRangeEnd,
+                };
+                axios
+                  .post("http://localhost:5500/add-a-applied-job", data)
+                  .then((res) => {
+                    console.log(res.data);
+                    setReloader(!reloader);
+                    alert("Done");
+                  })
+                  .catch((error) => console.log(error));
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => console.log(error));
   };
   return (
     <div>
