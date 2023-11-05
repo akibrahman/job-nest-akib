@@ -1,6 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import loader from "/infinite.svg";
 
@@ -52,7 +53,7 @@ const MyJobs = () => {
                 <p>Job Title: {job.jobTitle}</p>
                 <p>Job Posting Date: {job.jobPostingDate}</p>
                 <p>
-                  Application Deadline:{" "}
+                  Application Deadline:
                   {moment(job.applicationDeadline).format("Do MMM YYYY")}
                 </p>
                 <p>
@@ -66,6 +67,12 @@ const MyJobs = () => {
                 >
                   X
                 </button>
+                <Link to={`/job-edit/${job._id}`}>
+                  {" "}
+                  <button className="bg-yellow-500 w-9 h-9 rounded-full">
+                    E
+                  </button>
+                </Link>
               </div>
             ))}
           </div>

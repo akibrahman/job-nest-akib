@@ -3,6 +3,7 @@ import App from "../App";
 import AddJob from "./AddJob";
 import AllJobs from "./AllJobs";
 import AppliedJobs from "./AppliedJobs";
+import EditJob from "./EditJob";
 import JobDetailsPage from "./JobDetailsPage";
 import Login from "./Login";
 import MyJobs from "./MyJobs";
@@ -73,6 +74,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <JobDetailsPage></JobDetailsPage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/job-edit/:id",
+        element: (
+          <PrivateRoute>
+            <EditJob></EditJob>
           </PrivateRoute>
         ),
       },
