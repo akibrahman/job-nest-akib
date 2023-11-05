@@ -7,7 +7,7 @@ const NavBar = () => {
   const { user } = useContext(AuthContext);
   return (
     <div className="bg-gradient-to-r from-[#BC6AE7] to-[#6D3EB7]">
-      <nav className="w-[85%] mx-auto flex items-center justify-between py-4 text-white font-semibold">
+      <nav className="w-[85%] mx-auto flex items-center justify-between py-3 text-white font-semibold">
         <img
           className="w-32 bg-white px-3 py-2 rounded-full"
           src={logo}
@@ -18,24 +18,33 @@ const NavBar = () => {
             <p>Home</p>
           </Link>
           <p>All Jobs</p>
-          {user ? (
+          {user && (
             <>
-              {" "}
-              <p>Add a Job</p>
+              <Link to="add-a-job">
+                <p>Add a Job</p>
+              </Link>
               <p>My Jobs</p>
               <p>Applied Jobs</p>
-              <Link to="/profile">
-                <img
-                  className="w-9 h-9 rounded-full"
-                  src={
-                    user.photoURL
-                      ? user.photoURL
-                      : "https://i.ibb.co/CnXgXTB/no.webp"
-                  }
-                  alt=""
-                />
-              </Link>
             </>
+          )}
+        </div>
+        <div>
+          {user ? (
+            <Link
+              className="flex items-center gap-3 border px-1 py-1 rounded-full"
+              to="/profile"
+            >
+              <img
+                className="w-8 h-8 rounded-full"
+                src={
+                  user?.photoURL
+                    ? user.photoURL
+                    : "https://i.ibb.co/CnXgXTB/no.webp"
+                }
+                alt=""
+              />
+              <p>{user.displayName}</p>
+            </Link>
           ) : (
             <Link to="login">
               <p>Login</p>

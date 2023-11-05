@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import AddJob from "./AddJob";
 import Login from "./Login";
+import PrivateRoute from "./PrivateRoute";
 import Profile from "./Profile";
 import Registration from "./Registration";
 
@@ -24,7 +25,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile></Profile>,
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add-a-job",
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
+          </PrivateRoute>
+        ),
       },
     ],
   },

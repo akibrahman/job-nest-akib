@@ -14,18 +14,22 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authReloader, setAuthReloader] = useState(true);
+  const [privateRouteLoader, setPrivateRouteLoader] = useState(true);
   //! Getting Auth
   const auth = getAuth(app);
   //! For Registration
   const registration = (email, password) => {
+    setPrivateRouteLoader(false);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   //! For Login
   const login = (email, password) => {
+    setPrivateRouteLoader(false);
     return signInWithEmailAndPassword(auth, email, password);
   };
   //! For Logout
   const logout = () => {
+    setPrivateRouteLoader(false);
     return signOut(auth);
   };
   //! State Listener
@@ -34,6 +38,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         console.log(currentUser);
         setUser(currentUser);
+        setPrivateRouteLoader(false);
       } else {
         setUser(null);
       }
@@ -49,6 +54,7 @@ const AuthProvider = ({ children }) => {
     login,
     logout,
     user,
+    privateRouteLoader,
   };
   return (
     <AuthContext.Provider value={contextInfo}>{children}</AuthContext.Provider>
