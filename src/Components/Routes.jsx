@@ -5,6 +5,7 @@ import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "./Profile";
 import Registration from "./Registration";
+import TabWiseJobs from "./TabWiseJobs";
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +14,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <></>,
+        element: (
+          <>
+            <TabWiseJobs></TabWiseJobs>
+          </>
+        ),
       },
       {
         path: "/login",
