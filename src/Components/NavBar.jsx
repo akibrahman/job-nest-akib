@@ -17,13 +17,17 @@ const NavBar = () => {
           <Link to="/">
             <p>Home</p>
           </Link>
-          <p>All Jobs</p>
+          <Link to="all-jobs">
+            <p>All Jobs</p>
+          </Link>
           {user && (
             <>
               <Link to="add-a-job">
                 <p>Add a Job</p>
               </Link>
-              <p>My Jobs</p>
+              <Link to="my-jobs">
+                <p>My Jobs</p>
+              </Link>
               <p>Applied Jobs</p>
             </>
           )}
@@ -31,7 +35,7 @@ const NavBar = () => {
         <div>
           {user ? (
             <Link
-              className="flex items-center gap-3 border px-1 py-1 rounded-full"
+              className="flex items-center gap-3 border px-1 py-1 pr-2 rounded-full"
               to="/profile"
             >
               <img

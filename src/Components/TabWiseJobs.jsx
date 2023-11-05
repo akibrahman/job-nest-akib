@@ -1,6 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import loader from "/infinite.svg";
 
 const TabWiseJobs = () => {
   const categories = ["On Site", "Remote", "Hybrid", "Part Time"];
@@ -17,6 +18,7 @@ const TabWiseJobs = () => {
       });
   }, [active]);
   const handleTabChange = (category) => {
+    setJobs(null);
     setActive(category);
   };
   return (
@@ -36,9 +38,9 @@ const TabWiseJobs = () => {
           </p>
         ))}
       </div>
-      <div className="w-[85%] mx-auto my-10 grid grid-cols-2 gap-6">
-        {jobs &&
-          jobs.map((job) => (
+      {jobs ? (
+        <div className="w-[85%] mx-auto my-10 grid grid-cols-2 gap-6">
+          {jobs.map((job) => (
             <div key={job._id} className="border-2 p-4 rounded-lg">
               <p>Posted By: {job.authorName}</p>
               <p>Job Title: {job.jobTitle}</p>
@@ -55,7 +57,10 @@ const TabWiseJobs = () => {
               <button>View Details - </button>
             </div>
           ))}
-      </div>
+        </div>
+      ) : (
+        <img className="block mx-auto my-20" src={loader}></img>
+      )}
     </div>
   );
 };
