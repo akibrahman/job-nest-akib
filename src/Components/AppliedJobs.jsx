@@ -5,17 +5,32 @@ import { AuthContext } from "./AuthProvider";
 
 const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
+  const categories = ["On Site", "Remote", "Hybrid", "Part Time"];
+  const [filteredJobs, setFilteredJobs] = useState([]);
   const [jobs, setJobs] = useState(null);
   useEffect(() => {
     axios
       .get(`http://localhost:5500/applied-jobs?email=${user.email}`)
       .then((res) => {
         setJobs(res.data);
+        setFilteredJobs(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [user.email]);
+
+  const handlefilter = (event) => {
+    if (event.target.value === "all") {
+      setFilteredJobs([...jobs]);
+      return;
+    }
+    const existingJobs = [...jobs];
+    const filteredJobs = existingJobs.filter(
+      (job) => job.jobCategory === event.target.value
+    );
+    setFilteredJobs(filteredJobs);
+  };
   return (
     <div className="w-[85%] mx-auto my-10">
       <p className="text-4xl text-center">My Applied Jobs</p>
@@ -28,10 +43,23 @@ const AppliedJobs = () => {
           <p className="flex-1 text-center">Author Name</p>
           <p className="flex-1 text-center">Category</p>
           <p className="flex-1 text-center">Application Time</p>
-          <p className="flex-1 text-center">Action</p>
+          <select
+            onChange={handlefilter}
+            className="flex-1 text-center focus:outline-none"
+          >
+            <option value="all">All Jobs</option>
+            {categories.map((category, i) => (
+              <option
+                key={i + 1}
+                value={category.split(" ").join("").toLowerCase()}
+              >
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
         {jobs ? (
-          jobs.map((job, i) => (
+          filteredJobs.map((job, i) => (
             <div
               key={job._id}
               className="flex items-center justify-between border-y-2 p-4"
