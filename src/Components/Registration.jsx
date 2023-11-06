@@ -2,7 +2,8 @@ import axios from "axios";
 import { updateProfile } from "firebase/auth";
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "./AuthProvider";
 
 const Registration = () => {
@@ -10,6 +11,7 @@ const Registration = () => {
     useContext(AuthContext);
   const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
   //! BASE64 Convertor
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -49,7 +51,11 @@ const Registration = () => {
             })
               .then(() => {
                 setAuthReloader(!authReloader);
-                alert("Registered");
+                toast.success("Successfully Registered", {
+                  position: "top-center",
+                  autoClose: 2000,
+                });
+                navigate("/");
               })
               .catch((error) => {
                 console.log(error);
@@ -71,12 +77,14 @@ const Registration = () => {
       >
         <p className="text-center">Registration</p>
         <input
+          required
           className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
           placeholder="Name"
           type="text"
           name="name"
         />
         <input
+          required
           className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
           placeholder="E-mail"
           type="email"
@@ -84,6 +92,7 @@ const Registration = () => {
         />
         <div className="flex items-center gap-6">
           <input
+            required
             onChange={handleInput}
             className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
             type="file"
@@ -92,11 +101,13 @@ const Registration = () => {
           <img className="w-12 h-12 rounded-full" src={preview} alt="" />
         </div>
         <input
+          required
           className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
           placeholder="Password"
           type="password"
           name="password"
         />
+        <input required type="checkbox" />
         <input
           className="bg-purple-400 font-semibold text-white px-4 py-1 rounded-full"
           type="submit"

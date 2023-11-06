@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 import { AuthContext } from "./AuthProvider";
 
 const AddJob = () => {
@@ -71,7 +72,13 @@ const AddJob = () => {
               .post(`${import.meta.env.VITE_serverUrl}/add-a-job`, jobdata)
               .then((res) => {
                 console.log(res.data);
-                alert("Added");
+                toast.success("Job Added Successfully", {
+                  position: "top-center",
+                  autoClose: 2000,
+                });
+                data.reset();
+                setBannerImgPreview(null);
+                setCompanyImgPreview(null);
               })
               .catch((error) => {
                 console.log(error);
@@ -117,6 +124,7 @@ const AddJob = () => {
         <div className="flex items-center gap-4">
           <label htmlFor="">Job Title</label>
           <input
+            required
             className="bg-purple-500 text-white font-semibold px-3 py-2 rounded-lg"
             type="text"
             name="jobTitle"
@@ -125,7 +133,7 @@ const AddJob = () => {
 
         <div className="flex items-center gap-4">
           <label htmlFor="">Company Logo</label>
-          <input onChange={handleCompanyImgInput} type="file" />
+          <input required onChange={handleCompanyImgInput} type="file" />
           <img
             className={`${
               companyImgPreview ? "w-12 h-12 rounded-full border-2" : ""
@@ -136,7 +144,7 @@ const AddJob = () => {
         </div>
         <div className="flex items-center gap-4">
           <label htmlFor="">Banner</label>
-          <input onChange={handleBannerImgInput} type="file" />
+          <input required onChange={handleBannerImgInput} type="file" />
           <img
             className={`${
               bannerImgPreview ? "w-28 h-14 rounded-md border-2" : ""
@@ -169,6 +177,7 @@ const AddJob = () => {
         <div>
           <h2>Date Picker Example</h2>
           <DatePicker
+            required
             className="bg-purple-500"
             dateFormat="do MMM yyyy"
             selected={selectedDate}
@@ -178,11 +187,13 @@ const AddJob = () => {
         <div className="flex items-center gap-4">
           <label htmlFor="">Salary Range</label>
           <input
+            required
             className="bg-purple-500 text-white font-semibold px-3 py-2 rounded-lg"
             type="number"
             name="salaryRangeStart"
           />
           <input
+            required
             className="bg-purple-500 text-white font-semibold px-3 py-2 rounded-lg"
             type="number"
             name="salaryRangeEnd"

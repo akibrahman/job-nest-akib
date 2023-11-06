@@ -3,6 +3,7 @@ import axios from "axios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "./AuthProvider";
 import loader from "/infinite.svg";
 
@@ -21,10 +22,16 @@ const JobDetailsPage = () => {
   }, [params.id, reloader]);
   const apply = () => {
     if (user.email === job.authorEmail) {
-      alert("You are the Owner of this Post");
+      toast.info("You are the Owner of this Job", {
+        position: "top-center",
+        autoClose: 2000,
+      });
       return;
     } else if (!moment().isBefore(job.applicationDeadline)) {
-      alert("Deadline Over");
+      toast.error("Deadline for this job is Over !", {
+        position: "top-center",
+        autoClose: 2000,
+      });
       return;
     }
     axios
@@ -34,7 +41,10 @@ const JobDetailsPage = () => {
       })
       .then((res) => {
         if (typeof res.data == "object") {
-          alert("Can not be Applied");
+          toast.info("Already Applied", {
+            position: "top-center",
+            autoClose: 2000,
+          });
           return;
         }
         if (typeof res.data == "string") {
@@ -75,9 +85,12 @@ const JobDetailsPage = () => {
                 };
                 axios
                   .post("http://localhost:5500/add-a-applied-job", data)
-                  .then((res) => {
-                    console.log(res.data);
+                  .then(() => {
                     setReloader(!reloader);
+                    toast.success("Application Successful", {
+                      position: "top-center",
+                      autoClose: 2000,
+                    });
                     mail();
                   })
                   .catch((error) => console.log(error));

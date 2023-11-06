@@ -1,19 +1,31 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "./AuthProvider";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleLogin = (event) => {
     event.preventDefault();
     const data = event.target;
     login(data.email.value, data.password.value)
       .then(() => {
-        alert("Logged In");
+        toast.success("Successfully LoggedIn", {
+          position: "top-center",
+          autoClose: 2000,
+        });
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
-        console.log(error);
+        if (error.code == "auth/invalid-login-credentials") {
+          toast.error("Invalid User or Password", {
+            position: "top-center",
+            autoClose: 2000,
+          });
+        }
       });
   };
   return (
@@ -27,12 +39,14 @@ const Login = () => {
       >
         <p className="text-center">Login</p>
         <input
+          required
           className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
           placeholder="Email"
           type="email"
           name="email"
         />
         <input
+          required
           className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
           placeholder="Password"
           type="password"

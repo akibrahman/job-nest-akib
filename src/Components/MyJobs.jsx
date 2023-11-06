@@ -3,6 +3,8 @@ import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
 import loader from "/infinite.svg";
@@ -22,28 +24,57 @@ const MyJobs = () => {
 
   //! Delete
   const handleDelete = (id) => {
-    //Delete from allJobs
-    axios
-      .delete(`http://localhost:5500/delete-my-job/${id}`)
-      .then((res) => {
-        if (res.data.deletedCount > 0) {
-          const remaining = myJobs.filter((job) => job._id !== id);
-          setMyJobs(remaining);
-          alert("Deleted");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    // Delete from appliedJobs
-    axios
-      .delete(`http://localhost:5500/delete-my-job-from-applied-job/${id}`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    Swal.fire({
+      title: "Are you sure to delete?",
+      text: "This product will be removed from your cart",
+      icon: "warning",
+      showCancelButton: true,
+      //   background: `${!isDark ? "#111" : "#fff"}`,
+      //   color: `${!isDark ? "#fff" : "#111"}`,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //Delete from allJobs
+        axios
+          .delete(`http://localhost:5500/delete-my-job/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              const remaining = myJobs.filter((job) => job._id !== id);
+              setMyJobs(remaining);
+              Swal.fire({
+                title: "Deleted",
+                text: "Text",
+                icon: "success",
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        // Delete from appliedJobs
+        axios
+          .delete(`http://localhost:5500/delete-my-job-from-applied-job/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              toast.info("Also Deleted from Applied Job", {
+                position: "top-center",
+                autoClose: 4000,
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        Swal.fire({
+          title: "Cancelled",
+          text: "Text",
+          icon: "error",
+        });
+      }
+    });
   };
   return (
     <div className="w-[85%] mx-auto my-10">

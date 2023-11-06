@@ -67,6 +67,7 @@ const AuthProvider = ({ children }) => {
           })
           .catch();
         setUser(null);
+        setPrivateRouteLoader(false);
       }
     });
     return () => un();

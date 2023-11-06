@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EditJob = () => {
   const { id } = useParams();
@@ -73,19 +74,30 @@ const EditJob = () => {
       .patch(`http://localhost:5500/update-a-job/${id}`, updatedJob)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
-          console.log("Updated One");
+          toast.success("Job Updated", {
+            position: "top-center",
+            autoClose: 2000,
+          });
+          axios
+            .put(`http://localhost:5500/update-jobs/${id}`, updatedJob)
+            .then((res) => {
+              if (res.data.modifiedCount > 0) {
+                toast.info(
+                  `More ${res.data.modifiedCount} Applied Jobs Are Updated`,
+                  {
+                    position: "top-center",
+                    autoClose: 2000,
+                  }
+                );
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
       })
       .catch((error) => {
         console.log("This is single upgration error", error);
-      });
-    axios
-      .patch(`http://localhost:5500/update-jobs/${id}`, updatedJob)
-      .then((res) => {
-        console.log("More", res.data.modifiedCount, "Applied Jobs Are Updated");
-      })
-      .catch((error) => {
-        console.log(error);
       });
   };
   //! BASE64 Convertor
