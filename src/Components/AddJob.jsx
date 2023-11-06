@@ -104,7 +104,7 @@ const AddJob = () => {
   return (
     <div className="border-2 p-5 w-[70%] mx-auto my-16">
       <Helmet>
-        <title>Add Job || JobNest</title>
+        <title>JobNest || Add Job</title>
       </Helmet>
       <form
         onSubmit={handleSubmit}

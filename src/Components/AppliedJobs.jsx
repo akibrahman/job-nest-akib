@@ -1,12 +1,16 @@
 import moment from "moment";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
+// import { usePDF } from "react-to-pdf";
+import generatePDF, { Margin, Resolution } from "react-to-pdf";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
 
 const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
   const axiosInstance = useAxios();
+  const targetRef = useRef();
+  //   const { toPDF, targetRef } = usePDF({ filename: "AppliedJobs.pdf" });
   const categories = ["On Site", "Remote", "Hybrid", "Part Time"];
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [jobs, setJobs] = useState(null);
@@ -33,24 +37,33 @@ const AppliedJobs = () => {
     );
     setFilteredJobs(filteredJobs);
   };
+  //! PDF
+  const options = {
+    method: "open",
+    resolution: Resolution.HIGH,
+    page: {
+      margin: Margin.LARGE,
+      format: "A4",
+      orientation: "portrait",
+    },
+  };
   return (
-    <div className="w-[85%] mx-auto my-10">
+    <div ref={targetRef} className="w-[85%] mx-auto my-10">
       <Helmet>
-        <title>Applied Jobs || JobNest</title>
+        <title>JobNest || Applied Jobs</title>
       </Helmet>
       <p className="text-4xl text-center">My Applied Jobs</p>
       <div className="my-10 flex flex-col gap-6">
-        <div className="flex items-center justify-between border-y-2 p-4 bg-purple-200">
-          <p className="flex-1 text-center">SL No.</p>
-          <p className="flex-1 text-center">Company Logo</p>
-
-          <p className="flex-1 text-center">Job Title</p>
-          <p className="flex-1 text-center">Author Name</p>
-          <p className="flex-1 text-center">Category</p>
-          <p className="flex-1 text-center">Application Time</p>
+        <div className="flex items-center justify-center">
+          <button
+            onClick={() => generatePDF(targetRef, options)}
+            className="bg-green-500 px-3 py-1 rounded-full text-white duration-300 active:scale-90"
+          >
+            Download PDF
+          </button>
           <select
             onChange={handlefilter}
-            className="flex-1 text-center focus:outline-none"
+            className="text-center focus:outline-none"
           >
             <option value="all">All Jobs</option>
             {categories.map((category, i) => (
@@ -63,28 +76,38 @@ const AppliedJobs = () => {
             ))}
           </select>
         </div>
-        {jobs ? (
-          filteredJobs.map((job, i) => (
-            <div
-              key={job._id}
-              className="flex items-center justify-between border-y-2 p-4"
-            >
-              <p className="flex-1 text-center">{i + 1}</p>
-              <div className="flex-1 flex items-center justify-center">
-                <img className="w-10 h-10" src={job.companyImgURL} alt="" />
+        {/* ref={targetRef} */}
+        <div>
+          <div className="flex items-center justify-between p-4 bg-purple-200">
+            <p className="flex-1 text-center">SL No.</p>
+            <p className="flex-1 text-center">Company Logo</p>
+            <p className="flex-1 text-center">Job Title</p>
+            <p className="flex-1 text-center">Author Name</p>
+            <p className="flex-1 text-center">Category</p>
+            <p className="flex-1 text-center">Application Time</p>
+          </div>
+          {jobs ? (
+            filteredJobs.map((job, i) => (
+              <div
+                key={job._id}
+                className="flex items-center justify-between border-b-2 p-4"
+              >
+                <p className="flex-1 text-center">{i + 1}</p>
+                <div className="flex-1 flex items-center justify-center">
+                  <img className="w-10 h-10" src={job.companyImgURL} alt="" />
+                </div>
+                <p className="flex-1 text-center">{job.jobTitle}</p>
+                <p className="flex-1 text-center">{job.authorName}</p>
+                <p className="flex-1 text-center">{job.jobCategory}</p>
+                <p className="flex-1 text-center">
+                  {moment(job.applicationDate).format("Do MMM YYYY")}
+                </p>
               </div>
-              <p className="flex-1 text-center">{job.jobTitle}</p>
-              <p className="flex-1 text-center">{job.authorName}</p>
-              <p className="flex-1 text-center">{job.jobCategory}</p>
-              <p className="flex-1 text-center">
-                {moment(job.applicationDate).format("Do MMM YYYY")}
-              </p>
-              <p className="flex-1 text-center">Details</p>
-            </div>
-          ))
-        ) : (
-          <p>Loading</p>
-        )}
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
+        </div>
       </div>
     </div>
   );

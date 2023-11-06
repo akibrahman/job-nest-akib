@@ -22,7 +22,7 @@ const AllJobs = () => {
   return (
     <div className="w-[85%] mx-auto my-10">
       <Helmet>
-        <title>All Jobs || JobNest</title>
+        <title>JobNest || All Jobs</title>
       </Helmet>
       <p className="text-4xl text-center">All Jobs - {allJobs?.length}</p>
       <div className="flex items-center gap-4">

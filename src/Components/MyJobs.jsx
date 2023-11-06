@@ -48,7 +48,7 @@ const MyJobs = () => {
   return (
     <div className="w-[85%] mx-auto my-10">
       <Helmet>
-        <title>My Jobs || JobNest</title>
+        <title>JobNest || My Jobs</title>
       </Helmet>
       <p className="text-4xl text-center">My Created Jobs - {myJobs?.length}</p>
       <div className="my-10">

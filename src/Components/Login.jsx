@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <div>
       <Helmet>
-        <title>Login || JobNest</title>
+        <title>JobNest || Login</title>
       </Helmet>
       <form
         onSubmit={handleLogin}

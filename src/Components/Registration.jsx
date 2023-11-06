@@ -63,7 +63,7 @@ const Registration = () => {
   return (
     <div>
       <Helmet>
-        <title>Registration || JobNest</title>
+        <title>JobNest || Registration</title>
       </Helmet>
       <form
         onSubmit={handleSubmit}

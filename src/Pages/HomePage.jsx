@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div>
       <Helmet>
-        <title>Home || JobNest</title>
+        <title>JobNest || Home</title>
       </Helmet>
       <TabWiseJobs></TabWiseJobs>
     </div>

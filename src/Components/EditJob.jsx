@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
+import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 
 const EditJob = () => {
@@ -86,49 +87,6 @@ const EditJob = () => {
       .catch((error) => {
         console.log(error);
       });
-
-    // const companyImgData = new FormData();
-    // companyImgData.append("image", companyImg);
-
-    // axios
-    //   .post(
-    //     "https://api.imgbb.com/1/upload?key=f8c09563e2c3334b8e3c08a6de7d30df",
-    //     companyImgData
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data.data.display_url);
-    //     companyImgUrl = res.data.data.display_url;
-    //     const bannerImgData = new FormData();
-    //     bannerImgData.append("image", bannerImg);
-    //     axios
-    //       .post(
-    //         "https://api.imgbb.com/1/upload?key=f8c09563e2c3334b8e3c08a6de7d30df",
-    //         bannerImgData
-    //       )
-    //       .then((res) => {
-    //         console.log(res.data.data.display_url);
-    //         bannerImgUrl = res.data.data.display_url;
-    //       })
-    //       .catch((error) => {
-    //         console.log("Banner Image Upload error - ", error);
-    //         return;
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     console.log("Company Image Upload error - ", error);
-    //     return;
-    //   });
-
-    // console.log("Company - ", companyImgUrl);
-    // console.log("Banner - ", bannerImgUrl);
-
-    // const updatedJob = {
-    //   jobTitle: form.jobTitle.value,
-    //   jobCategory: form.category.value,
-    //   applicationDeadline: newDeadline ? newDeadline : job.applicationDeadline,
-    //   salaryRangeStart: form.salaryRangeStart.value,
-    //   salaryRangeEnd: form.salaryRangeEnd.value,
-    // };
   };
   //! BASE64 Convertor
   const convertBase64 = (file) => {
@@ -159,6 +117,9 @@ const EditJob = () => {
   if (!job) return <p>Loading</p>;
   return (
     <div className="border-2 p-5 w-[70%] mx-auto my-16">
+      <Helmet>
+        <title>JobNest||Edit Job</title>
+      </Helmet>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-10"

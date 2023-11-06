@@ -16,7 +16,7 @@ const Profile = () => {
   return (
     <div>
       <Helmet>
-        <title>Profile || JobNest</title>
+        <title>JobNest || Profile</title>
       </Helmet>
       <p>Profile</p>
       <button
