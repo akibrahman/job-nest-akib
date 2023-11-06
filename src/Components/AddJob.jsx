@@ -3,6 +3,7 @@ import moment from "moment/moment";
 import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet";
 import { AuthContext } from "./AuthProvider";
 
 const AddJob = () => {
@@ -102,6 +103,9 @@ const AddJob = () => {
   };
   return (
     <div className="border-2 p-5 w-[70%] mx-auto my-16">
+      <Helmet>
+        <title>Add Job || JobNest</title>
+      </Helmet>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-10"

@@ -1,6 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
@@ -46,6 +47,9 @@ const MyJobs = () => {
   };
   return (
     <div className="w-[85%] mx-auto my-10">
+      <Helmet>
+        <title>My Jobs || JobNest</title>
+      </Helmet>
       <p className="text-4xl text-center">My Created Jobs - {myJobs?.length}</p>
       <div className="my-10">
         {myJobs ? (

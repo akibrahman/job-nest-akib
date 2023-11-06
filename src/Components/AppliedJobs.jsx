@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
 
@@ -34,6 +35,9 @@ const AppliedJobs = () => {
   };
   return (
     <div className="w-[85%] mx-auto my-10">
+      <Helmet>
+        <title>Applied Jobs || JobNest</title>
+      </Helmet>
       <p className="text-4xl text-center">My Applied Jobs</p>
       <div className="my-10 flex flex-col gap-6">
         <div className="flex items-center justify-between border-y-2 p-4 bg-purple-200">

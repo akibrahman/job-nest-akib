@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 
@@ -17,6 +18,9 @@ const Login = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Login || JobNest</title>
+      </Helmet>
       <form
         onSubmit={handleLogin}
         className="border-2 w-[70%] mx-auto my-8 py-8 flex flex-col items-center gap-5"

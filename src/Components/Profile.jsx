@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Helmet } from "react-helmet";
 import { AuthContext } from "./AuthProvider";
 
 const Profile = () => {
@@ -14,6 +15,9 @@ const Profile = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Profile || JobNest</title>
+      </Helmet>
       <p>Profile</p>
       <button
         onClick={handleLogout}

@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import ErrorPage from "../Pages/ErrorPage";
+import HomePage from "../Pages/HomePage";
 import AddJob from "./AddJob";
 import AllJobs from "./AllJobs";
 import AppliedJobs from "./AppliedJobs";
@@ -11,7 +12,6 @@ import MyJobs from "./MyJobs";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "./Profile";
 import Registration from "./Registration";
-import TabWiseJobs from "./TabWiseJobs";
 
 export const router = createBrowserRouter([
   {
@@ -21,11 +21,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <>
-            <TabWiseJobs></TabWiseJobs>
-          </>
-        ),
+        element: <HomePage></HomePage>,
       },
       {
         path: "/login",
