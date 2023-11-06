@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -35,11 +36,36 @@ const AuthProvider = ({ children }) => {
   //! State Listener
   useEffect(() => {
     const un = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
       if (currentUser) {
         // console.log(currentUser);
+        axios
+          .post(
+            "http://localhost:5500/create-jwt",
+            {
+              email: userEmail,
+            },
+            { withCredentials: true }
+          )
+          .then(() => {
+            console.log("Token Created");
+          })
+          .catch();
         setUser(currentUser);
         setPrivateRouteLoader(false);
       } else {
+        axios
+          .post(
+            "http://localhost:5500/remove-jwt",
+            {
+              email: userEmail,
+            },
+            { withCredentials: true }
+          )
+          .then(() => {
+            console.log("Token Removed");
+          })
+          .catch();
         setUser(null);
       }
     });
