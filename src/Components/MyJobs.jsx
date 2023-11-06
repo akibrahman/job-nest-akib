@@ -12,7 +12,7 @@ const MyJobs = () => {
   const [myJobs, setMyJobs] = useState(null);
   useEffect(() => {
     axiosInstance
-      .get(`/all-jobs?email=${user.email}`)
+      .get(`/my-jobs?email=${user.email}`)
       .then((res) => setMyJobs(res.data))
       .catch((error) => {
         console.log(error);

@@ -80,6 +80,7 @@ const AuthProvider = ({ children }) => {
     login,
     logout,
     user,
+    setUser,
     privateRouteLoader,
     setPrivateRouteLoader,
   };
