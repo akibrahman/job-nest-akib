@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
+import ErrorPage from "../Pages/ErrorPage";
 import AddJob from "./AddJob";
 import AllJobs from "./AllJobs";
 import AppliedJobs from "./AppliedJobs";
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
