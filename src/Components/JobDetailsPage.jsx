@@ -1,3 +1,4 @@
+import emailjs from "@emailjs/browser";
 import axios from "axios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
@@ -77,7 +78,7 @@ const JobDetailsPage = () => {
                   .then((res) => {
                     console.log(res.data);
                     setReloader(!reloader);
-                    alert("Done");
+                    mail();
                   })
                   .catch((error) => console.log(error));
               }
@@ -88,6 +89,25 @@ const JobDetailsPage = () => {
         }
       })
       .catch((error) => console.log(error));
+  };
+  const mail = () => {
+    emailjs
+      .send(
+        "service_g6cvxq2",
+        "template_alsa7er",
+        {
+          inputEmail: user.email,
+          user: user.displayName,
+          jobTitle: job.jobTitle,
+        },
+        "7KRV2RNgMFhMkRBxQ"
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div>
