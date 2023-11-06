@@ -81,6 +81,7 @@ const AuthProvider = ({ children }) => {
     logout,
     user,
     privateRouteLoader,
+    setPrivateRouteLoader,
   };
   return (
     <AuthContext.Provider value={contextInfo}>{children}</AuthContext.Provider>

@@ -2,15 +2,17 @@ import axios from "axios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
 import loader from "/infinite.svg";
 
 const MyJobs = () => {
+  const axiosInstance = useAxios();
   const { user } = useContext(AuthContext);
   const [myJobs, setMyJobs] = useState(null);
   useEffect(() => {
-    axios
-      .get(`http://localhost:5500/all-jobs?email=${user.email}`)
+    axiosInstance
+      .get(`/all-jobs?email=${user.email}`)
       .then((res) => setMyJobs(res.data))
       .catch((error) => {
         console.log(error);

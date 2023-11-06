@@ -1,16 +1,17 @@
-import axios from "axios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
+import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
 
 const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
+  const axiosInstance = useAxios();
   const categories = ["On Site", "Remote", "Hybrid", "Part Time"];
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [jobs, setJobs] = useState(null);
   useEffect(() => {
-    axios
-      .get(`http://localhost:5500/applied-jobs?email=${user.email}`)
+    axiosInstance
+      .get(`/applied-jobs?email=${user.email}`)
       .then((res) => {
         setJobs(res.data);
         setFilteredJobs(res.data);
