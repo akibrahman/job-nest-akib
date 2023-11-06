@@ -22,6 +22,8 @@ const AppliedJobs = () => {
       <div className="my-10 flex flex-col gap-6">
         <div className="flex items-center justify-between border-y-2 p-4 bg-purple-200">
           <p className="flex-1 text-center">SL No.</p>
+          <p className="flex-1 text-center">Company Logo</p>
+
           <p className="flex-1 text-center">Job Title</p>
           <p className="flex-1 text-center">Author Name</p>
           <p className="flex-1 text-center">Category</p>
@@ -35,6 +37,9 @@ const AppliedJobs = () => {
               className="flex items-center justify-between border-y-2 p-4"
             >
               <p className="flex-1 text-center">{i + 1}</p>
+              <div className="flex-1 flex items-center justify-center">
+                <img className="w-10 h-10" src={job.companyImgURL} alt="" />
+              </div>
               <p className="flex-1 text-center">{job.jobTitle}</p>
               <p className="flex-1 text-center">{job.authorName}</p>
               <p className="flex-1 text-center">{job.jobCategory}</p>

@@ -26,6 +26,7 @@ const MyJobs = () => {
         if (res.data.deletedCount > 0) {
           const remaining = myJobs.filter((job) => job._id !== id);
           setMyJobs(remaining);
+          alert("Deleted");
         }
       })
       .catch((error) => {
@@ -68,7 +69,6 @@ const MyJobs = () => {
                   X
                 </button>
                 <Link to={`/job-edit/${job._id}`}>
-                  {" "}
                   <button className="bg-yellow-500 w-9 h-9 rounded-full">
                     E
                   </button>

@@ -14,9 +14,6 @@ const AddJob = () => {
   const [bannerImg, setBannerImg] = useState(null);
   const [bannerImgPreview, setBannerImgPreview] = useState(null);
 
-  //   const [companyImgUrl, setCompanyImgUrl] = useState(null);
-  //   const [bannerImgUrl, setBannerImgUrl] = useState(null);
-
   //! BASE64 Convertor
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -47,7 +44,7 @@ const AddJob = () => {
       )
       .then((res) => {
         console.log(res.data.data.display_url);
-        let a = res.data.data.display_url;
+        let companyImgUrl = res.data.data.display_url;
         axios
           .post(
             "https://api.imgbb.com/1/upload?key=f8c09563e2c3334b8e3c08a6de7d30df",
@@ -55,13 +52,13 @@ const AddJob = () => {
           )
           .then((res) => {
             console.log(res.data.data.display_url);
-            let b = res.data.data.display_url;
+            let bannerImgUrl = res.data.data.display_url;
             const jobdata = {
               authorName: user.displayName,
               authorEmail: user.email,
               jobTitle: data.jobTitle.value,
-              companyImgURL: a,
-              bannerImgURL: b,
+              companyImgURL: companyImgUrl,
+              bannerImgURL: bannerImgUrl,
               jobCategory: data.category.value,
               jobPostingDate: data.jobPostingDate.value,
               applicationDeadline: selectedDate,
@@ -92,7 +89,7 @@ const AddJob = () => {
     setSelectedDate(date);
   };
 
-  //! Image Related
+  //! Image Input
   const handleCompanyImgInput = async (event) => {
     setCompanyImg(event.target.files[0]);
     const base64 = await convertBase64(event.target.files[0]);
@@ -121,6 +118,7 @@ const AddJob = () => {
             name="jobTitle"
           />
         </div>
+
         <div className="flex items-center gap-4">
           <label htmlFor="">Company Logo</label>
           <input onChange={handleCompanyImgInput} type="file" />
@@ -143,6 +141,7 @@ const AddJob = () => {
             alt=""
           />
         </div>
+
         <div className="flex items-center gap-4">
           <label htmlFor="">Job Category</label>
           <select name="category" id="">
