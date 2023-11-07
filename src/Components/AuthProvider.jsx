@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
     const un = onAuthStateChanged(auth, (currentUser) => {
       const userEmail = currentUser?.email || user?.email;
       if (currentUser) {
-        // console.log(currentUser);
+        console.log(currentUser);
         axios
           .post(
             `${import.meta.env.VITE_serverUrl}/create-jwt`,

@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../Hooks/useAxios";
+import loader from "/infinite.svg";
 
 const EditJob = () => {
   const { id } = useParams();
@@ -126,7 +127,7 @@ const EditJob = () => {
     setBannerImgPreview(base64);
   };
 
-  if (!job) return <p>Loading</p>;
+  if (!job) return <img className="block mx-auto my-20" src={loader}></img>;
   return (
     <div className="">
       <Helmet>
@@ -135,7 +136,7 @@ const EditJob = () => {
       <div className="bg-banner flex items-center justify-center">
         <div className="h-full w-full bg-[rgba(0,0,0,0.8)] py-10">
           <p className="text-center text-4xl font-bold text-white">
-            Add Your Job
+            Edit Job Post
           </p>
         </div>
       </div>
