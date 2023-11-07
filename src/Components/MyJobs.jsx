@@ -1,6 +1,9 @@
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { FiEdit3 } from "react-icons/fi";
+import { MdDeleteOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -25,8 +28,8 @@ const MyJobs = () => {
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure to delete?",
-      text: "This product will be removed from your cart",
-      icon: "warning",
+      text: "This job will be deleted permanently!",
+      icon: "question",
       showCancelButton: true,
       //   background: `${!isDark ? "#111" : "#fff"}`,
       //   color: `${!isDark ? "#fff" : "#111"}`,
@@ -44,7 +47,7 @@ const MyJobs = () => {
               setMyJobs(remaining);
               Swal.fire({
                 title: "Deleted",
-                text: "Text",
+                text: "Your post is deleted successfully",
                 icon: "success",
               });
             }
@@ -69,46 +72,66 @@ const MyJobs = () => {
       } else {
         Swal.fire({
           title: "Cancelled",
-          text: "Text",
-          icon: "error",
+          icon: "info",
         });
       }
     });
   };
   return (
-    <div className="w-[85%] mx-auto my-10">
+    <div className="my-10">
       <Helmet>
         <title>JobNest || My Jobs</title>
       </Helmet>
-      <p className="text-4xl text-center">My Created Jobs - {myJobs?.length}</p>
-      <div className="my-10">
+      <div className="bg-banner flex items-center justify-center">
+        <div className="shadow-xl h-full w-full bg-[rgba(0,0,0,0.8)] py-6">
+          <p className="text-center text-5xl font-semibold text-white">
+            My Created Jobs - {myJobs?.length}
+          </p>
+        </div>
+      </div>
+
+      <div className="w-[85%] mx-auto ">
         {myJobs ? (
-          <div className="my-10 grid grid-cols-3 gap-6">
-            {myJobs.map((job) => (
-              <div key={job._id} className="border-2 p-4 rounded-lg">
-                {/* <p>Posted By: {job.authorName}</p> */}
-                <p>Job Title: {job.jobTitle}</p>
-                <p>Job Posting Date: {job.jobPostingDate}</p>
-                <p>
-                  Application Deadline:
+          <div className="my-8 flex flex-col gap-3">
+            <div className="border-2 border-them2 p-4 rounded-lg flex items-center justify-between bg-theme2 font-semibold">
+              <p className="w-14 text-center">Sl. No.</p>
+              <p className="flex-1 text-center">Job Title</p>
+              <p className="flex-1 text-center">Posting Date</p>
+              <p className="flex-1 text-center">Deadline</p>
+              <p className="flex-1 text-center">Salary Range</p>
+              <p className="flex-1 text-center">Applicants</p>
+              <p className="flex-1 text-center">Action</p>
+            </div>
+            {myJobs.map((job, i) => (
+              <div
+                key={job._id}
+                className="border-2 p-4 rounded-lg flex items-center justify-between"
+              >
+                <p className="w-14 text-center">{i + 1}</p>
+                <p className="flex-1 text-center">{job.jobTitle}</p>
+                <p className="flex-1 text-center">{job.jobPostingDate}</p>
+                <p className="flex-1 text-center">
                   {moment(job.applicationDeadline).format("Do MMM YYYY")}
                 </p>
-                <p>
-                  Salary Range: <span>{job.salaryRangeStart}</span>-
+                <p className="flex-1 text-center flex items-center gap-1">
+                  <FaBangladeshiTakaSign></FaBangladeshiTakaSign>
+                  <span>{job.salaryRangeStart}</span>-
                   <span>{job.salaryRangeEnd}</span>
                 </p>
-                <p>Applicants Number: {job.applicants}</p>
-                <button
-                  onClick={() => handleDelete(job._id)}
-                  className="bg-red-500 w-9 h-9 rounded-full"
-                >
-                  X
-                </button>
-                <Link to={`/job-edit/${job._id}`}>
-                  <button className="bg-yellow-500 w-9 h-9 rounded-full">
-                    E
+                <p className="flex-1 text-center">{job.applicants}</p>
+                <div className="flex-1 flex justify-center items-center gap-2">
+                  <Link className="flex" to={`/job-edit/${job._id}`}>
+                    <button className="bg-orange-500 text-white font-semibold  active:scale-90 duration-300 rounded-full">
+                      <FiEdit3 className="w-9 h-9 p-2"></FiEdit3>
+                    </button>
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(job._id)}
+                    className="bg-red-600 text-white font-semibold  active:scale-90 duration-300 rounded-full"
+                  >
+                    <MdDeleteOutline className="w-9 h-9 p-2"></MdDeleteOutline>
                   </button>
-                </Link>
+                </div>
               </div>
             ))}
           </div>

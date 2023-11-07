@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
-import banner from "/banner.jpg";
 // import loader from "/infinite.svg";
 
 const JobDetailsPage = () => {
@@ -130,12 +129,18 @@ const JobDetailsPage = () => {
   };
   return (
     <div>
-      <img className="w-full" src={banner} alt="" />
+      <div className="bg-banner flex items-center justify-center">
+        <div className="h-full w-full bg-[rgba(0,0,0,0.8)] py-24">
+          <p className="text-center text-5xl font-bold text-white">
+            Job Details Page
+          </p>
+        </div>
+      </div>
 
       <div className="w-[85%] mx-auto my-10 grid grid-cols-3 gap-8">
         <div className="">
           <img
-            className="h-56 rounded-lg block"
+            className="w-full rounded-lg block"
             src={job.bannerImgURL}
             alt=""
           />
@@ -179,6 +184,9 @@ const JobDetailsPage = () => {
                 src={job.companyImgURL}
                 alt=""
               />
+              <p className="bg-theme font-semibold px-3 py-1 rounded-full ">
+                Applicants: {job.applicants}
+              </p>
             </div>
           </div>
         </div>
@@ -186,7 +194,7 @@ const JobDetailsPage = () => {
           <p className="font-bold text-3xl">{job.jobTitle}</p>
           <p className="font-semibold mt-4">
             Deadline:{" "}
-            <span className="bg-theme2 px-2 py-1 rounded-full text-white">
+            <span className="bg-red-400 ml-2 px-2 py-1 rounded-full text-white">
               {moment(job.applicationDeadline).format("Do MMM YY")}
             </span>
           </p>

@@ -9,6 +9,7 @@ export default {
       },
       backgroundImage: {
         login: "url('/login.jpg')",
+        banner: "url('/banner.jpg')",
         slide1: "url('/slide1.jpg')",
         slide2: "url('/slide2.jpg')",
         slide3: "url('/slide3.jpg')",
