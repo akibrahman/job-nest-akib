@@ -49,7 +49,7 @@ const AppliedJobs = () => {
     },
   };
   return (
-    <div className="my-10">
+    <div className="my-10 mb-52">
       <Helmet>
         <title>JobNest || Applied Jobs</title>
       </Helmet>
@@ -107,7 +107,10 @@ const AppliedJobs = () => {
                 </div>
                 <p className="flex-1 text-center">{job.jobTitle}</p>
                 <p className="flex-1 text-center">{job.authorName}</p>
-                <p className="flex-1 text-center">{job.jobCategory}</p>
+                <p className="flex-1 text-center">
+                  {job.jobCategory.charAt(0).toUpperCase() +
+                    job.jobCategory.slice(1)}
+                </p>
                 <p className="flex-1 text-center">
                   {moment(job.applicationDate).format("Do MMM YYYY")}
                 </p>

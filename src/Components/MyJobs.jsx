@@ -78,7 +78,7 @@ const MyJobs = () => {
     });
   };
   return (
-    <div className="my-10">
+    <div className="my-10 mb-52">
       <Helmet>
         <title>JobNest || My Jobs</title>
       </Helmet>

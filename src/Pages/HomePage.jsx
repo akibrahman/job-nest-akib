@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import Contact from "../Components/Contact";
 import HomeSlider from "../Components/HomeSlider";
 import TabWiseJobs from "../Components/TabWiseJobs";
 
@@ -10,6 +11,7 @@ const HomePage = () => {
       </Helmet>
       <HomeSlider></HomeSlider>
       <TabWiseJobs></TabWiseJobs>
+      <Contact></Contact>
     </div>
   );
 };
