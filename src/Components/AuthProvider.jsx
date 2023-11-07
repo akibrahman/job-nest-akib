@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
         // console.log(currentUser);
         axios
           .post(
-            "http://localhost:5500/create-jwt",
+            `${import.meta.env.VITE_serverUrl}/create-jwt`,
             {
               email: userEmail,
             },
@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            "http://localhost:5500/remove-jwt",
+            `${import.meta.env.VITE_serverUrl}/remove-jwt`,
             {
               email: userEmail,
             },

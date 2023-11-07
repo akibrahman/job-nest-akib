@@ -4,21 +4,20 @@ import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAxios from "../Hooks/useAxios";
 
 const EditJob = () => {
   const { id } = useParams();
+  const axiosInstance = useAxios();
   const [job, setJob] = useState(null);
   const [newDeadline, setNewDeadline] = useState(null);
   const [companyImg, setCompanyImg] = useState(null);
   const [companyImgPreview, setCompanyImgPreview] = useState(null);
   const [bannerImg, setBannerImg] = useState(null);
   const [bannerImgPreview, setBannerImgPreview] = useState(null);
-
-  //   const [companyImgUrl, setCompanyImgUrl] = useState(null);
-  //   const [bannerImgUrl, setBannerImgUrl] = useState(null);
   useEffect(() => {
-    axios
-      .get(`http://localhost:5500/job-details/${id}`)
+    axiosInstance
+      .get(`/job-details/${id}`)
       .then((res) => {
         setJob(res.data);
       })
@@ -70,16 +69,16 @@ const EditJob = () => {
       salaryRangeEnd: form.salaryRangeEnd.value,
     };
 
-    axios
-      .patch(`http://localhost:5500/update-a-job/${id}`, updatedJob)
+    axiosInstance
+      .patch(`/update-a-job/${id}`, updatedJob)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Job Updated", {
             position: "top-center",
             autoClose: 2000,
           });
-          axios
-            .put(`http://localhost:5500/update-jobs/${id}`, updatedJob)
+          axiosInstance
+            .put(`/update-jobs/${id}`, updatedJob)
             .then((res) => {
               if (res.data.modifiedCount > 0) {
                 toast.info(
@@ -208,6 +207,18 @@ const EditJob = () => {
             onChange={handleDateChange}
           />
         </div>
+
+        <div className="flex items-center gap-4">
+          <label htmlFor="">Description</label>
+
+          <textarea
+            name="description"
+            defaultValue={job.jobDescription}
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+
         <div className="flex items-center gap-4">
           <label htmlFor="">Salary Range</label>
           <input

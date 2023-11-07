@@ -1,16 +1,17 @@
-import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import useAxios from "../Hooks/useAxios";
 import loader from "/infinite.svg";
 
 const AllJobs = () => {
+  const axiosInstance = useAxios();
   const [allJobs, setAllJobs] = useState(null);
   const [typing, setTyping] = useState("");
   useEffect(() => {
-    axios
-      .get(`http://localhost:5500/all-jobs?search=${typing}`)
+    axiosInstance
+      .get(`/all-jobs?search=${typing}`)
       .then((res) => setAllJobs(res.data))
       .catch((error) => {
         console.log(error);

@@ -1,17 +1,20 @@
-import axios from "axios";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAxios from "../Hooks/useAxios";
+import { AuthContext } from "./AuthProvider";
 import loader from "/infinite.svg";
 
 const TabWiseJobs = () => {
   const categories = ["On Site", "Remote", "Hybrid", "Part Time"];
+  const axiosInstance = useAxios();
+  const { user } = useContext(AuthContext);
   const [active, setActive] = useState("On Site");
   const [jobs, setJobs] = useState(null);
   useEffect(() => {
-    axios
-      .get(`http://localhost:5500/all-jobs?category=${active}`)
+    axiosInstance
+      .get(`/all-jobs?category=${active}`)
       .then((res) => {
         setJobs(res.data);
       })
@@ -59,10 +62,11 @@ const TabWiseJobs = () => {
               <Link to={`/job-details/${job._id}`}>
                 <button
                   onClick={() => {
-                    toast.info("You have to log in first to View Details", {
-                      position: "top-center",
-                      autoClose: 2000,
-                    });
+                    !user &&
+                      toast.info("You have to log in first to View Details", {
+                        position: "top-center",
+                        autoClose: 2000,
+                      });
                   }}
                   className="bg-purple-500 text-white font-semibold px-4 py-1 rounded-lg mt-4 active:scale-90 duration-300 cursor-pointer select-none"
                 >

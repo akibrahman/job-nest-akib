@@ -1,4 +1,3 @@
-import axios from "axios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -37,8 +36,8 @@ const MyJobs = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         //Delete from allJobs
-        axios
-          .delete(`http://localhost:5500/delete-my-job/${id}`)
+        axiosInstance
+          .delete(`/delete-my-job/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               const remaining = myJobs.filter((job) => job._id !== id);
@@ -54,8 +53,8 @@ const MyJobs = () => {
             console.log(error);
           });
         // Delete from appliedJobs
-        axios
-          .delete(`http://localhost:5500/delete-my-job-from-applied-job/${id}`)
+        axiosInstance
+          .delete(`/delete-my-job-from-applied-job/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               toast.info("Also Deleted from Applied Job", {

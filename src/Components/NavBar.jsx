@@ -6,10 +6,10 @@ import logo from "/logo.png";
 const NavBar = () => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="bg-gradient-to-r from-[#BC6AE7] to-[#6D3EB7]">
-      <nav className="w-[85%] mx-auto flex items-center justify-between py-3 text-white font-semibold">
+    <div className="bg-gradient-to-l from-theme2  to-theme">
+      <nav className="w-[85%] mx-auto flex items-center justify-between py-2 text-white font-semibold">
         <img
-          className="w-32 bg-white px-3 py-2 rounded-full"
+          className="w-32 bg-white px-3 py-1 rounded-full"
           src={logo}
           alt=""
         />

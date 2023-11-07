@@ -5,10 +5,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
+import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
 
 const AddJob = () => {
   const { user } = useContext(AuthContext);
+  const axiosInstance = useAxios();
   const [selectedDate, setSelectedDate] = useState(null);
 
   const [companyImg, setCompanyImg] = useState(null);
@@ -68,8 +70,8 @@ const AddJob = () => {
               salaryRangeStart: parseInt(data.salaryRangeStart.value),
               salaryRangeEnd: parseInt(data.salaryRangeEnd.value),
             };
-            axios
-              .post(`${import.meta.env.VITE_serverUrl}/add-a-job`, jobdata)
+            axiosInstance
+              .post(`/add-a-job`, jobdata)
               .then((res) => {
                 console.log(res.data);
                 toast.success("Job Added Successfully", {
