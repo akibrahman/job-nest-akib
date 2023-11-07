@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
@@ -29,7 +30,7 @@ const TabWiseJobs = () => {
     setActive(category);
   };
   return (
-    <div className="w-[85%] mx-auto my-10">
+    <div className="w-[85%] mx-auto my-20 border-b border-theme">
       <div className="flex items-center justify-center gap-10">
         {categories.map((category, index) => (
           <p
@@ -48,7 +49,7 @@ const TabWiseJobs = () => {
       {jobs ? (
         <div className=" my-10 grid grid-cols-2 gap-6">
           {jobs.map((job) => (
-            <div
+            <motion.div
               key={job._id}
               className="border-l-4 border-theme2 hover:border-theme p-4 rounded-lg shadow-xl hover:shadow-2xl duration-100 ease-linear"
             >
@@ -100,7 +101,7 @@ const TabWiseJobs = () => {
                   </button>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       ) : (

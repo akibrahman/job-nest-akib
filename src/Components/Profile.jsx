@@ -88,7 +88,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative mb-32">
       <Helmet>
         <title>JobNest || Profile</title>
       </Helmet>

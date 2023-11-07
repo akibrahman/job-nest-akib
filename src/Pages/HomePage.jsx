@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import Contact from "../Components/Contact";
 import HomeSlider from "../Components/HomeSlider";
 import TabWiseJobs from "../Components/TabWiseJobs";
+import Testimonials from "../Components/Testimonials";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       </Helmet>
       <HomeSlider></HomeSlider>
       <TabWiseJobs></TabWiseJobs>
+      <Testimonials></Testimonials>
       <Contact></Contact>
     </div>
   );
