@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import generatePDF, { Margin, Resolution } from "react-to-pdf";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
+import loader from "/infinite.svg";
 
 const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
@@ -42,44 +43,52 @@ const AppliedJobs = () => {
     method: "open",
     resolution: Resolution.HIGH,
     page: {
-      margin: Margin.LARGE,
+      margin: Margin.MEDIUM,
       format: "A4",
       orientation: "portrait",
     },
   };
   return (
-    <div ref={targetRef} className="w-[85%] mx-auto my-10">
+    <div className="my-10">
       <Helmet>
         <title>JobNest || Applied Jobs</title>
       </Helmet>
-      <p className="text-4xl text-center">My Applied Jobs</p>
-      <div className="my-10 flex flex-col gap-6">
-        <div className="flex items-center justify-center">
-          <button
-            onClick={() => generatePDF(targetRef, options)}
-            className="bg-green-500 px-3 py-1 rounded-full text-white duration-300 active:scale-90"
-          >
-            Download PDF
-          </button>
-          <select
-            onChange={handlefilter}
-            className="text-center focus:outline-none"
-          >
-            <option value="all">All Jobs</option>
-            {categories.map((category, i) => (
-              <option
-                key={i + 1}
-                value={category.split(" ").join("").toLowerCase()}
-              >
-                {category}
-              </option>
-            ))}
-          </select>
+
+      <div className="bg-banner flex items-center justify-center">
+        <div className="shadow-xl h-full w-full bg-[rgba(0,0,0,0.8)] py-6">
+          <p className="text-center text-4xl font-semibold text-white">
+            My Applied Jobs - {jobs?.length}
+          </p>
+          <div className="flex items-center justify-center gap-5 mt-6">
+            <button
+              onClick={() => generatePDF(targetRef, options)}
+              className="bg-green-500 px-3 py-1 rounded-full text-white duration-300 active:scale-90"
+            >
+              Download PDF
+            </button>
+            <select
+              onChange={handlefilter}
+              className="text-center focus:outline-none rounded-full p-1"
+            >
+              <option value="all">All Jobs</option>
+              {categories.map((category, i) => (
+                <option
+                  key={i + 1}
+                  value={category.split(" ").join("").toLowerCase()}
+                >
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
+      </div>
+
+      <div ref={targetRef} className="my-6 w-[85%] mx-auto">
         {/* ref={targetRef} */}
         <div>
-          <div className="flex items-center justify-between p-4 bg-purple-200">
-            <p className="flex-1 text-center">SL No.</p>
+          <div className="border-2 border-theme2 border-them2 p-4 rounded-lg flex items-center justify-between bg-theme2 font-semibold">
+            <p className="w-12 text-center">SL No.</p>
             <p className="flex-1 text-center">Company Logo</p>
             <p className="flex-1 text-center">Job Title</p>
             <p className="flex-1 text-center">Author Name</p>
@@ -92,7 +101,7 @@ const AppliedJobs = () => {
                 key={job._id}
                 className="flex items-center justify-between border-b-2 p-4"
               >
-                <p className="flex-1 text-center">{i + 1}</p>
+                <p className="w-12 text-center">{i + 1}</p>
                 <div className="flex-1 flex items-center justify-center">
                   <img className="w-10 h-10" src={job.companyImgURL} alt="" />
                 </div>
@@ -105,7 +114,7 @@ const AppliedJobs = () => {
               </div>
             ))
           ) : (
-            <p>Loading</p>
+            <img className="block mx-auto my-20" src={loader}></img>
           )}
         </div>
       </div>

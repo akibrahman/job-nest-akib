@@ -46,7 +46,7 @@ const AllJobs = () => {
       <div className="w-[85%] mx-auto">
         {allJobs ? (
           <div className="my-8 flex flex-col gap-3">
-            <div className="border-2 border-them2 p-4 rounded-lg flex items-center justify-between bg-theme2 font-semibold">
+            <div className="border-2 border-theme2 border-them2 p-4 rounded-lg flex items-center justify-between bg-theme2 font-semibold">
               <p className="w-14 text-center">Sl. No.</p>
               <p className="flex-1 text-center">Author Name</p>
               <p className="flex-1 text-center">Job Title</p>

@@ -1,6 +1,7 @@
 import emailjs from "@emailjs/browser";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { CiLocationOn } from "react-icons/ci";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { FiShield } from "react-icons/fi";
@@ -9,13 +10,13 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
-// import loader from "/infinite.svg";
+import loader from "/infinite.svg";
 
 const JobDetailsPage = () => {
   const axiosInstance = useAxios();
   const { user } = useContext(AuthContext);
   const params = useParams();
-  const [job, setJob] = useState([]);
+  const [job, setJob] = useState(null);
   const [reloader, setReloader] = useState(true);
   useEffect(() => {
     axiosInstance
@@ -127,11 +128,17 @@ const JobDetailsPage = () => {
         console.log(error);
       });
   };
+  if (!job) {
+    return <img className="block mx-auto my-20" src={loader}></img>;
+  }
   return (
     <div>
+      <Helmet>
+        <title>JobNest || Details Page</title>
+      </Helmet>
       <div className="bg-banner flex items-center justify-center">
-        <div className="h-full w-full bg-[rgba(0,0,0,0.8)] py-24">
-          <p className="text-center text-5xl font-bold text-white">
+        <div className="h-full w-full bg-[rgba(0,0,0,0.8)] py-10">
+          <p className="text-center text-4xl font-bold text-white">
             Job Details Page
           </p>
         </div>
