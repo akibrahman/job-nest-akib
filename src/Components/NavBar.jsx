@@ -53,7 +53,9 @@ const NavBar = () => {
             </Link>
           ) : (
             <Link to="login">
-              <p>Login</p>
+              <p className="bg-theme px-3 py-1 rounded-full duration-300 select-none active:scale-90 text-white">
+                Login
+              </p>
             </Link>
           )}
         </div>
