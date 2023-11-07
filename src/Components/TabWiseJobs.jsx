@@ -35,8 +35,8 @@ const TabWiseJobs = () => {
             key={index}
             className={`font-semibold px-3 py-1 rounded-lg cursor-pointer select-none active:scale-90 duration-300 ${
               category == active
-                ? "bg-purple-500 text-white border border-transparent"
-                : "bg-white text-purple-500 border border-purple-500"
+                ? "bg-theme2 text-white border border-transparent"
+                : "bg-white text-theme2 border border-theme"
             }`}
           >
             {category}

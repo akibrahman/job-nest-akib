@@ -4,8 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        theme: "#A62719",
-        theme2: "#ED5761",
+        theme: "#F0AA14",
+        theme2: "#F9EC2F",
+      },
+      backgroundImage: {
+        login: "url('/login.jpg')",
       },
     },
   },

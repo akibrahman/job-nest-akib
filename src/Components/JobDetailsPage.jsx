@@ -194,17 +194,7 @@ const JobDetailsPage = () => {
             Job Description
           </p>
           <p className="mt-4 text-justify text-slate-700">
-            We are seeking a creative UI/UX Designer to craft intuitive,
-            visually appealing, and user-centric digital experiences.
-            Collaborate with cross-functional teams to conceptualize and design
-            responsive web and mobile interfaces. Translate user needs into
-            wireframes and prototypes, conduct usability testing, and refine
-            designs for optimal user engagement. Stay updated on design trends
-            and best practices, ensuring a seamless and delightful user journey.
-            Proficiency in design tools, a strong eye for detail, and a
-            portfolio showcasing your design prowess are essential. Join us in
-            shaping cutting-edge user experiences that captivate and elevate our
-            digital platforms.
+            {job.jobDescription}
           </p>
 
           <p className="mt-8 text-2xl font-semibold tracking-widest border-b-2 border-theme pb-2 pl-2">

@@ -6,8 +6,8 @@ import logo from "/logo.png";
 const NavBar = () => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="bg-gradient-to-l from-theme2  to-theme">
-      <nav className="w-[85%] mx-auto flex items-center justify-between py-2 text-white font-semibold">
+    <div className=" border-b-2 border-theme">
+      <nav className="w-[85%] mx-auto flex items-center justify-between py-2 text-black font-semibold">
         <img
           className="w-32 bg-white px-3 py-1 rounded-full"
           src={logo}

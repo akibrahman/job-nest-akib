@@ -64,6 +64,7 @@ const AddJob = () => {
               companyImgURL: companyImgUrl,
               bannerImgURL: bannerImgUrl,
               jobCategory: data.category.value,
+              jobDescription: data.jobDescription.value,
               jobPostingDate: data.jobPostingDate.value,
               applicationDeadline: selectedDate,
               applicants: 0,
@@ -186,6 +187,13 @@ const AddJob = () => {
             onChange={handleDateChange}
           />
         </div>
+
+        <div className="flex items-center gap-4">
+          <label htmlFor="">Description</label>
+
+          <textarea name="jobDescription" cols="30" rows="10"></textarea>
+        </div>
+
         <div className="flex items-center gap-4">
           <label htmlFor="">Salary Range</label>
           <input

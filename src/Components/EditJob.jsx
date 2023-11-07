@@ -64,6 +64,7 @@ const EditJob = () => {
       companyImgURL: newData.companyImage,
       bannerImgURL: newData.bannerImage,
       jobCategory: form.category.value,
+      jobDescription: form.jobDescription.value,
       applicationDeadline: newDeadline ? newDeadline : job.applicationDeadline,
       salaryRangeStart: form.salaryRangeStart.value,
       salaryRangeEnd: form.salaryRangeEnd.value,
@@ -212,7 +213,7 @@ const EditJob = () => {
           <label htmlFor="">Description</label>
 
           <textarea
-            name="description"
+            name="jobDescription"
             defaultValue={job.jobDescription}
             cols="30"
             rows="10"
