@@ -112,109 +112,150 @@ const AddJob = () => {
     setBannerImgPreview(base64);
   };
   return (
-    <div className="border-2 p-5 w-[70%] mx-auto my-16">
+    <div className="">
       <Helmet>
         <title>JobNest || Add Job</title>
       </Helmet>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col items-center gap-10"
-      >
-        <div className="flex items-center gap-4">
-          <label htmlFor="">Job Post Creator:</label>
-          <p>{user.displayName}</p>
+      <div className="bg-banner flex items-center justify-center">
+        <div className="h-full w-full bg-[rgba(0,0,0,0.8)] py-10">
+          <p className="text-center text-4xl font-bold text-white">
+            Add Your Job
+          </p>
         </div>
-        <div className="flex items-center gap-4">
-          <label htmlFor="">Job Title</label>
+      </div>
+      <div className="w-[75%] mx-auto my-10">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full flex flex-col items-center gap-10 p-5 px-10 border border-theme rounded-lg"
+        >
+          <div className="flex items-center gap-4 font-semibold border-2 border-theme rounded-full px-3 py-2">
+            <label htmlFor="">Job Post Creator:</label>
+            <p className="text-theme text-xl">{user.displayName}</p>
+          </div>
+
+          <div className="flex justify-between items-center w-full my-5">
+            <div className="flex items-center gap-4">
+              <label className="font-semibold">Job Title</label>
+              <input
+                required
+                placeholder="Enter Job Title"
+                className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
+                type="text"
+                name="jobTitle"
+              />
+            </div>
+            <div className="flex items-center gap-5">
+              <label className="font-semibold">Salary Range</label>
+              <input
+                required
+                placeholder="Starts"
+                className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full w-40 placeholder:text-center"
+                type="number"
+                name="salaryRangeStart"
+              />
+              <p>-</p>
+              <input
+                required
+                placeholder="Ends"
+                className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full w-40 placeholder:text-center"
+                type="number"
+                name="salaryRangeEnd"
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center w-full my-5 gap-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <label className="w-[130px] font-semibold">Company Logo</label>
+                <input
+                  required
+                  className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
+                  onChange={handleCompanyImgInput}
+                  type="file"
+                />
+                <img
+                  className={`${
+                    companyImgPreview ? "w-12 h-12 rounded-full border-2" : ""
+                  }`}
+                  src={companyImgPreview}
+                  alt=""
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <label className="w-[130px] font-semibold">Banner</label>
+                <input
+                  className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
+                  required
+                  onChange={handleBannerImgInput}
+                  type="file"
+                />
+                <img
+                  className={`${
+                    bannerImgPreview ? "w-14 h-14 rounded-md border-2" : ""
+                  }`}
+                  src={bannerImgPreview}
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <label className="w-[110px] font-semibold">Posting Date</label>
+                <input
+                  className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
+                  type="text"
+                  defaultValue={moment().format("Do MMM YYYY")}
+                  readOnly
+                  name="jobPostingDate"
+                />
+              </div>
+              {/* Test  */}
+              <div className="flex items-center gap-4">
+                <label className="w-[110px] font-semibold">Deadline</label>
+                <DatePicker
+                  required
+                  placeholderText="Enter Deadline"
+                  className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
+                  dateFormat="do MMM yyyy"
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <label className="font-semibold">Job Category</label>
+            <select
+              className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
+              name="category"
+              id=""
+            >
+              <option value="onsite">On Site Job</option>
+              <option value="remote">Remote Job</option>
+              <option value="hybrid">Hybrid Job</option>
+              <option value="parttime">Part Time Job</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col items-center gap-4 w-full">
+            <label className="font-semibold">Description</label>
+            <textarea
+              name="jobDescription"
+              className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-lg w-full"
+              placeholder="Enter the Description for your Job"
+              cols="30"
+              rows="10"
+            ></textarea>
+          </div>
           <input
-            required
-            className="bg-purple-500 text-white font-semibold px-3 py-2 rounded-lg"
-            type="text"
-            name="jobTitle"
+            type="submit"
+            value="Add"
+            className="bg-theme px-4 py-2 rounded-full font-semibold text-white active:scale-90 duration-300 cursor-pointer"
           />
-        </div>
-
-        <div className="flex items-center gap-4">
-          <label htmlFor="">Company Logo</label>
-          <input required onChange={handleCompanyImgInput} type="file" />
-          <img
-            className={`${
-              companyImgPreview ? "w-12 h-12 rounded-full border-2" : ""
-            }`}
-            src={companyImgPreview}
-            alt=""
-          />
-        </div>
-        <div className="flex items-center gap-4">
-          <label htmlFor="">Banner</label>
-          <input required onChange={handleBannerImgInput} type="file" />
-          <img
-            className={`${
-              bannerImgPreview ? "w-28 h-14 rounded-md border-2" : ""
-            }`}
-            src={bannerImgPreview}
-            alt=""
-          />
-        </div>
-
-        <div className="flex items-center gap-4">
-          <label htmlFor="">Job Category</label>
-          <select name="category" id="">
-            <option value="onsite">On Site Job</option>
-            <option value="remote">Remote Job</option>
-            <option value="hybrid">Hybrid Job</option>
-            <option value="parttime">Part Time Job</option>
-          </select>
-        </div>
-        <div className="flex items-center gap-4">
-          <label htmlFor="">Job Posting Date</label>
-          <input
-            className="bg-purple-500 text-white font-semibold px-3 py-2 rounded-lg"
-            type="text"
-            defaultValue={moment().format("Do MMM YYYY")}
-            readOnly
-            name="jobPostingDate"
-          />
-        </div>
-        {/* Test  */}
-        <div>
-          <h2>Date Picker Example</h2>
-          <DatePicker
-            required
-            className="bg-purple-500"
-            dateFormat="do MMM yyyy"
-            selected={selectedDate}
-            onChange={handleDateChange}
-          />
-        </div>
-
-        <div className="flex items-center gap-4">
-          <label htmlFor="">Description</label>
-
-          <textarea name="jobDescription" cols="30" rows="10"></textarea>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <label htmlFor="">Salary Range</label>
-          <input
-            required
-            className="bg-purple-500 text-white font-semibold px-3 py-2 rounded-lg"
-            type="number"
-            name="salaryRangeStart"
-          />
-          <input
-            required
-            className="bg-purple-500 text-white font-semibold px-3 py-2 rounded-lg"
-            type="number"
-            name="salaryRangeEnd"
-          />
-        </div>
-        <input
-          type="submit"
-          value="Add"
-          className="bg-purple-500 px-3 py-1 rounded-lg font-semibold text-white active:scale-90 duration-300"
-        />
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

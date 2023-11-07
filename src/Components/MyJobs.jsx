@@ -84,7 +84,7 @@ const MyJobs = () => {
       </Helmet>
       <div className="bg-banner flex items-center justify-center">
         <div className="shadow-xl h-full w-full bg-[rgba(0,0,0,0.8)] py-6">
-          <p className="text-center text-5xl font-semibold text-white">
+          <p className="text-center text-4xl font-semibold text-white">
             My Created Jobs - {myJobs?.length}
           </p>
         </div>
