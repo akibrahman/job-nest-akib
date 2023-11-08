@@ -60,6 +60,7 @@ const TabWiseJobs = () => {
                 x: 0,
                 zoom: 1,
               }}
+              transition={{ type: "tween" }}
               key={job._id}
               className="border-l-4 border-theme2 hover:border-theme p-4 rounded-lg shadow-xl hover:shadow-2xl duration-100 ease-linear"
             >

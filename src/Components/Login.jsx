@@ -7,7 +7,7 @@ import { AuthContext } from "./AuthProvider";
 import logo from "/logo.png";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const spinner = useRef();
@@ -17,7 +17,7 @@ const Login = () => {
     const data = event.target;
     login(data.email.value, data.password.value)
       .then(() => {
-        toast.success("Successfully LoggedIn", {
+        toast.success("Successfully Logged in", {
           position: "top-center",
           autoClose: 2000,
         });
@@ -36,6 +36,26 @@ const Login = () => {
             autoClose: 2000,
           });
         }
+        spinner.current.classList.add("hidden");
+      });
+  };
+  const handleGoogleLogin = () => {
+    spinner.current.classList.remove("hidden");
+    googleLogin()
+      .then(() => {
+        toast.success("Successfully Logged in by Google", {
+          position: "top-center",
+          autoClose: 2000,
+        });
+        spinner.current.classList.add("hidden");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.code, {
+          position: "top-center",
+          autoClose: 2000,
+        });
         spinner.current.classList.add("hidden");
       });
   };
@@ -76,6 +96,15 @@ const Login = () => {
                 className="focus:outline-none bg-stone-200 px-4 py-2 rounded-full text-theme"
                 type="password"
                 name="password"
+              />
+            </div>
+            <p className="text-center my-5">or</p>
+            <div className="flex items-center justify-center">
+              <img
+                onClick={handleGoogleLogin}
+                className="w-9 border rounded-full border-theme p-1 active:scale-75 duration-300 cursor-pointer"
+                src="https://i.ibb.co/LhWvyQh/download-2.png"
+                alt=""
               />
             </div>
             <div className="mt-8 flex items-center justify-between">

@@ -1,9 +1,11 @@
 import axios from "axios";
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import propTypes from "prop-types";
@@ -16,6 +18,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [authReloader, setAuthReloader] = useState(true);
   const [privateRouteLoader, setPrivateRouteLoader] = useState(true);
+  const googleProvider = new GoogleAuthProvider();
   //! Getting Auth
   const auth = getAuth(app);
   //! For Registration
@@ -27,6 +30,11 @@ const AuthProvider = ({ children }) => {
   const login = (email, password) => {
     setPrivateRouteLoader(false);
     return signInWithEmailAndPassword(auth, email, password);
+  };
+  //! For Google Login
+  const googleLogin = () => {
+    setPrivateRouteLoader(false);
+    return signInWithPopup(auth, googleProvider);
   };
   //! For Logout
   const logout = () => {
@@ -79,6 +87,7 @@ const AuthProvider = ({ children }) => {
     setAuthReloader,
     registration,
     login,
+    googleLogin,
     logout,
     user,
     setUser,
