@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import { LiaTimesSolid } from "react-icons/lia";
@@ -6,16 +7,23 @@ import { AuthContext } from "./AuthProvider";
 import logo from "/logo.png";
 
 const NavBar = () => {
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: "-100%" },
+  };
   const { user } = useContext(AuthContext);
   const [navbar, setNavbar] = useState(false);
   return (
     <div className=" border-b-2 border-theme relative">
       {/* For Mobile View  */}
-      <div
+      <motion.div
+        animate={navbar ? "open" : "closed"}
+        variants={variants}
+        transition={{ type: "tween" }}
         onClick={() => setNavbar(false)}
-        className={`fixed h-screen  bg-theme2 font-semibold top-0 px-10 py-10 md:hidden flex flex-col gap-4 duration-300 ease-linear z-50 ${
-          navbar ? "left-0" : "-translate-x-full"
-        }`}
+        className={`fixed h-screen  bg-theme2 font-semibold top-0 px-10 py-10 md:hidden flex flex-col gap-4 z-50 
+        ${navbar ? "left0" : "-translatex-full"}
+        `}
       >
         <NavLink to="/">
           <p>Home</p>
@@ -39,7 +47,7 @@ const NavBar = () => {
         <NavLink to="/blogs">
           <p>Blogs</p>
         </NavLink>
-      </div>
+      </motion.div>
       <nav className="w-[85%] md:w-[95%] lg:w-[85%] mx-auto flex items-center justify-between py-2 text-black font-semibold">
         <img
           className="w-24 md:w-28 lg:w-32 bg-white px-3 py-1 rounded-full"

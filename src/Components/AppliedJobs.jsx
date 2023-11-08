@@ -2,6 +2,7 @@ import moment from "moment";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 // import { usePDF } from "react-to-pdf";
+import { motion } from "framer-motion";
 import generatePDF, { Margin, Resolution } from "react-to-pdf";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
@@ -100,7 +101,10 @@ const AppliedJobs = () => {
           </div>
           {jobs ? (
             filteredJobs.map((job, i) => (
-              <div
+              <motion.div
+                initial={{ x: 300 }}
+                animate={{ x: 0 }}
+                transition={{ type: "spring" }}
                 key={job._id}
                 className="flex flex-col gap-2 md:flex-row md:gap-0 items-center justify-between border-b-2 p-4"
               >
@@ -117,7 +121,7 @@ const AppliedJobs = () => {
                 <p className="flex-1 text-center">
                   {moment(job.applicationDate).format("Do MMM YYYY")}
                 </p>
-              </div>
+              </motion.div>
             ))
           ) : (
             <img className="block mx-auto my-20" src={loader}></img>

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -21,6 +22,7 @@ const AllJobs = () => {
   }, [typing, axiosInstance]);
   const handleSearch = (event) => {
     setTyping(event.target.value);
+    // setAllJobs([]);
   };
   return (
     <div className="mb-10">
@@ -56,9 +58,12 @@ const AllJobs = () => {
               <p className="flex-1 text-center">Details</p>
             </div>
             {allJobs.map((job, i) => (
-              <div
+              <motion.div
+                initial={{ x: 300 }}
+                animate={{ x: 0 }}
+                transition={{ type: "spring" }}
                 key={job._id}
-                className="border-2 p-1 md:p-4 rounded-lg flex items-center justify-between   py-3 md:py-1 flex-col gap-3 md:flex-row md:gap-0"
+                className="border-2 p-1 md:p-4 rounded-lg flex items-center justify-between py-3 flex-col gap-3 md:flex-row md:gap-0"
               >
                 <p className="w-14 text-center">{i + 1}</p>
                 <p className="flex-1 text-center">{job.authorName}</p>
@@ -80,7 +85,7 @@ const AllJobs = () => {
                     View <BsArrowRight></BsArrowRight>
                   </button>
                 </Link>
-              </div>
+              </motion.div>
             ))}
           </div>
         ) : (

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -103,7 +104,10 @@ const MyJobs = () => {
               <p className="flex-1 text-center">Action</p>
             </div>
             {myJobs.map((job, i) => (
-              <div
+              <motion.div
+                initial={{ x: 300 }}
+                animate={{ x: 0 }}
+                transition={{ type: "spring" }}
                 key={job._id}
                 className="border-2 p-4 rounded-lg flex flex-col gap-2 md:flex-row md:gap-0 items-center justify-between"
               >
@@ -132,7 +136,7 @@ const MyJobs = () => {
                     <MdDeleteOutline className="w-9 h-9 p-2"></MdDeleteOutline>
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         ) : (

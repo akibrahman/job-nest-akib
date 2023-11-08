@@ -35,7 +35,7 @@ const HomeSlider = () => {
                 </p>
                 <div className="flex items-center">
                   <input
-                    className="focus:outline-none px-4 py-3 rounded-full rounded-e w-[500px] text-theme font-bold"
+                    className="focus:outline-none px-4 py-3 rounded-full rounded-e md:w-[500px] text-theme font-bold w-[200px]"
                     type="text"
                     name=""
                     id=""
@@ -63,7 +63,7 @@ const HomeSlider = () => {
                 </p>
                 <div className="flex items-center">
                   <input
-                    className="focus:outline-none px-4 py-3 rounded-full rounded-e w-[500px] text-theme font-bold"
+                    className="focus:outline-none px-4 py-3 rounded-full rounded-e md:w-[500px] text-theme font-bold w-[200px]"
                     type="text"
                     name=""
                     id=""
@@ -92,7 +92,7 @@ const HomeSlider = () => {
                 </p>
                 <div className="flex items-center">
                   <input
-                    className="focus:outline-none px-4 py-3 rounded-full rounded-e w-[500px] text-theme font-bold"
+                    className="focus:outline-none px-4 py-3 rounded-full rounded-e md:w-[500px] text-theme font-bold w-[200px]"
                     type="text"
                     name=""
                     id=""

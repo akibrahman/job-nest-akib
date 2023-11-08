@@ -26,7 +26,7 @@ const TabWiseJobs = () => {
       });
   }, [active, axiosInstance]);
   const handleTabChange = (category) => {
-    setJobs(null);
+    // setJobs(null);
     setActive(category);
   };
   return (
@@ -50,6 +50,16 @@ const TabWiseJobs = () => {
         <div className=" my-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {jobs.map((job) => (
             <motion.div
+              drag
+              dragConstraints={{ left: 10, right: 10, top: 10, bottom: 10 }}
+              initial={{
+                x: 100,
+                zoom: 0,
+              }}
+              animate={{
+                x: 0,
+                zoom: 1,
+              }}
               key={job._id}
               className="border-l-4 border-theme2 hover:border-theme p-4 rounded-lg shadow-xl hover:shadow-2xl duration-100 ease-linear"
             >
@@ -81,10 +91,10 @@ const TabWiseJobs = () => {
                   {job.jobCategory.charAt(0).toUpperCase() +
                     job.jobCategory.slice(1)}
                 </p>
-                <p className="flex items-center gap-1">
+                <motion.p className="flex items-center gap-1">
                   <FaBangladeshiTakaSign></FaBangladeshiTakaSign>{" "}
                   {job.salaryRangeStart} - {job.salaryRangeEnd}
-                </p>
+                </motion.p>
                 <Link to={`/job-details/${job._id}`}>
                   <button
                     onClick={() => {

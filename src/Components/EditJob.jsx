@@ -1,7 +1,9 @@
 import axios from "axios";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
+import { BsCalendar3 } from "react-icons/bs";
 import { TailSpin } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -153,7 +155,10 @@ const EditJob = () => {
         </div>
       </div>
       <div className="w-[95%] lg:w-[85%] mx-auto my-10">
-        <form
+        <motion.form
+          initial={{ zoom: 0 }}
+          animate={{ zoom: 1 }}
+          transition={{ type: "spring" }}
           onSubmit={handleSubmit}
           className="w-full flex flex-col items-center gap-5 md:gap-10 p-5 px-10 border border-theme rounded-lg"
         >
@@ -249,12 +254,12 @@ const EditJob = () => {
                 />
               </div>
               {/* Test  */}
-              <div className="flex flex-col md:flex-row items-center gap-4">
+              <div className="flex flex-col md:flex-row items-center gap-4 relative">
                 <label className="w-[110px] font-semibold">Deadline</label>
                 <DatePicker
                   required
                   placeholderText="Enter Deadline"
-                  className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
+                  className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full cursor-pointer z-30 bg-transparent"
                   dateFormat="do MMM yyyy"
                   selected={
                     newDeadline
@@ -263,6 +268,7 @@ const EditJob = () => {
                   }
                   onChange={handleDateChange}
                 />
+                <BsCalendar3 className="absolute right-8 text-theme cursor-pointer -z-10"></BsCalendar3>
               </div>
             </div>
           </div>
@@ -312,7 +318,7 @@ const EditJob = () => {
               />
             </div>
           </div>
-        </form>
+        </motion.form>
       </div>
     </div>
   );
