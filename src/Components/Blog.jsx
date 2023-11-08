@@ -130,11 +130,13 @@ const Blog = () => {
           The special thing which I have implemented here, that one is imgbb
           api. That means you no need to paste the image url. You can directly
           upload the image from your client side and the server side will handle
-          the system of making the URL for that image. And also.I have
+          the system of making the URL for that image. And also I have
           implemented the loading system for every data loading API call. That
           is why you will be sure that yes, the data is now in loading state and
-          also I have explored the framework motion and I have implemented the
-          framework motions also.
+          also I have explored the framer motion and I have implemented the
+          framer motions. I have implemented here emailjs, which will send an
+          email after applying a job. And also, I have added here, react-to-pdf,
+          by which you can download the PDF of applied jobs.
         </p>
       </div>
     </div>
