@@ -12,7 +12,8 @@ const NavBar = () => {
     <div className=" border-b-2 border-theme relative">
       {/* For Mobile View  */}
       <div
-        className={`absolute h-screen  bg-theme2 font-semibold top-0 px-10 py-10 md:hidden flex flex-col gap-4 duration-300 ease-linear ${
+        onClick={() => setNavbar(false)}
+        className={`fixed h-screen  bg-theme2 font-semibold top-0 px-10 py-10 md:hidden flex flex-col gap-4 duration-300 ease-linear z-50 ${
           navbar ? "left-0" : "-translate-x-full"
         }`}
       >

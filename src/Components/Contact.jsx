@@ -4,8 +4,8 @@ import { CiLocationOn } from "react-icons/ci";
 
 const Contact = () => {
   return (
-    <div className="w-[85%] mx-auto my-20 flex">
-      <div className="flex flex-col gap-6 w-1/2">
+    <div className="w-[85%] mx-auto my-20 flex flex-col md:flex-row gap-10 md:gap-0">
+      <div className="flex flex-col items-center md:items-start gap-6 w-full md:w-1/2">
         <div className="flex gap-5">
           <BsTelephoneOutbound className="text-4xl"></BsTelephoneOutbound>
           <div className="">
@@ -33,7 +33,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <form action="" className="space-y-4">
           <input
             className="focus:outline-none px-6 py-5 bg-transparent border w-full"

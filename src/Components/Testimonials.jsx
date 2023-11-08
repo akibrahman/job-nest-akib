@@ -13,7 +13,7 @@ import "../CSS/Slider.css";
 // import SliderBtn from "./SliderBtn";
 const Testimonials = () => {
   return (
-    <div className="w-[85%] mx-auto bg-gradient-to-r from-theme to-theme2 pb-20 pt-16">
+    <div className="w-full md:w-[85%] mx-auto bg-gradient-to-r from-theme to-theme2 pb-20 pt-16 my-10">
       <p className="text-4xl font-medium text-center mb-10">Testimonials</p>
       <Swiper
         modules={[Pagination, Autoplay, Navigation, EffectCoverflow]}
@@ -25,9 +25,16 @@ const Testimonials = () => {
           modifier: 1,
           slideShadows: true,
         }}
+        breakpoints={{
+          425: {
+            slidesPerView: 1,
+          },
+          800: {
+            slidesPerView: 3,
+          },
+        }}
+        pagination={true}
         grabCursor={true}
-        slidesPerView={3}
-        spaceBetween={0}
         loop={true}
         autoplay={{
           delay: 4000,
@@ -35,7 +42,7 @@ const Testimonials = () => {
         }}
       >
         <SwiperSlide>
-          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white">
+          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white pb-10">
             <p className="text-center p-4 rounded-lg">
               JobNest transformed my job search journey. With their
               user-friendly platform and expert guidance, I found my dream job
@@ -53,7 +60,7 @@ const Testimonials = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white">
+          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white pb-10">
             <p className="text-center p-4 rounded-lg">
               I had been searching for the perfect job for months until I
               discovered JobNest. Their extensive listings and easy-to-navigate
@@ -71,7 +78,7 @@ const Testimonials = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white">
+          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white pb-10">
             <p className="text-center p-4 rounded-lg">
               JobNest is my go-to for job hunting. Their professional approach
               and robust job database gave me the edge in my career. The support
@@ -89,12 +96,12 @@ const Testimonials = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white">
+          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white pb-10">
             <p className="text-center p-4 rounded-lg">
               JobNest is a game-changer in the job market. Their intuitive
               platform and diverse job listings cater to every career need. With
               their help, I secured my dream job, and I could not be happier.
-              JobNest, you are the best
+              JobNest, you are the best. All the best. Keep gonig like that.
             </p>
             <div className="flex flex-col items-center">
               <img
@@ -102,12 +109,12 @@ const Testimonials = () => {
                 src="https://i.ibb.co/sWDMS05/gucci4.jpg"
                 alt=""
               />
-              <p>Seshmi Khan</p>
+              <p>Reshmi Khan</p>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white">
+          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white pb-10">
             <p className="text-center p-4 rounded-lg">
               JobNest took the stress out of my job search. The seamless
               experience and tailored job recommendations simplified the
@@ -125,7 +132,7 @@ const Testimonials = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white">
+          <div className="flex flex-col gap-4 rounded-lg p-3 bg-white pb-10">
             <p className="text-center p-4 rounded-lg">
               JobNest exceeded my expectations. The user interface is intuitive,
               and the wealth of information available is unmatched. JobNest

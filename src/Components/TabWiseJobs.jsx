@@ -24,19 +24,19 @@ const TabWiseJobs = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [active]);
+  }, [active, axiosInstance]);
   const handleTabChange = (category) => {
     setJobs(null);
     setActive(category);
   };
   return (
-    <div className="w-[85%] mx-auto my-20 border-b border-theme">
-      <div className="flex items-center justify-center gap-10">
+    <div className="w-[90%] md:w-[85%] mx-auto my-20 border-b border-theme">
+      <div className="flex items-center justify-center gap-5 md:gap-10">
         {categories.map((category, index) => (
           <p
             onClick={() => handleTabChange(category)}
             key={index}
-            className={`font-semibold px-3 py-1 rounded-lg cursor-pointer select-none active:scale-90 duration-300 ${
+            className={`font-semibold px-1 md:px-3 py-1 rounded-lg cursor-pointer select-none active:scale-90 duration-300 ${
               category == active
                 ? "bg-theme2 border border-transparent"
                 : "bg-white border border-theme"
@@ -47,7 +47,7 @@ const TabWiseJobs = () => {
         ))}
       </div>
       {jobs ? (
-        <div className=" my-10 grid grid-cols-2 gap-6">
+        <div className=" my-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {jobs.map((job) => (
             <motion.div
               key={job._id}
@@ -62,11 +62,11 @@ const TabWiseJobs = () => {
                 <div className="flex flex-col gap-1 w-full">
                   <p className="font-semibold ">{job.jobTitle}</p>
                   <div className="flex flex-col gap-1 text-sm ">
-                    <div className="flex gap-6">
+                    <div className="flex gap-0 justify-between md:gap-6 md:justify-center">
                       <p>Author : {job.authorName}</p>
                       <p>Applicants : {job.applicants}</p>
                     </div>
-                    <div className="flex gap-6">
+                    <div className="flex flex-col md:flex-row gap-1 md:gap-6">
                       <p>Publish Date : {job.jobPostingDate}</p>
                       <p>
                         Deadline :{" "}
@@ -94,7 +94,7 @@ const TabWiseJobs = () => {
                           autoClose: 2000,
                         });
                     }}
-                    className="bg-theme text-white font-semibold px-4 py-1 rounded-lg active:scale-90 duration-300 cursor-pointer select-none flex items-center gap-2"
+                    className="bg-theme text-white font-semibold px-2 md:px-4 py-1 rounded-lg active:scale-90 duration-300 cursor-pointer select-none flex items-center gap-2"
                   >
                     Details
                     <BsArrowRight className="text-xl"></BsArrowRight>

@@ -8,8 +8,9 @@ import SliderBtn from "./SliderBtn";
 
 const HomeSlider = () => {
   return (
-    <div>
+    <div className="">
       <Swiper
+        className="w-full h-full"
         modules={[Pagination, Autoplay, Navigation]}
         grabCursor={true}
         loop={true}
@@ -21,20 +22,16 @@ const HomeSlider = () => {
         <SwiperSlide>
           <div className="bg-slide1 bg-cover bg-center">
             <div className="w-full h-full bg-[rgba(0,0,0,0.7)]">
-              <div className="w-[85%] mx-auto py-32 text-white">
-                <p className="text-6xl font-semibold mb-6">
+              <div className="w-[85%] mx-auto py-10 md:py-20 lg:py-32 text-white">
+                <p className="text-3xl md:text-4xl lg:text-6xl font-semibold mb-6">
                   {/* Your Path to Success: Find Your Dream Job with Us */}
                   Find Your Dream Job with Us
                 </p>
-                <p className="font-medium mb-10 w-[70%]">
+                <p className="font-medium mb-10 w-[70%] mx-auto md:mx-0">
                   Our job hunting company website is your one-stop destination
                   for career opportunities. We provide comprehensive job
                   listings, expert career advice, and a platform for connecting
-                  with top employers. Explore a wide range of industries, find
-                  personalized job matches, and discover the resources you need
-                  to excel in your job search. Whether you are starting your
-                  career journey or seeking a new path, we are here to help you
-                  reach your professional goals.
+                  with top employers.
                 </p>
                 <div className="flex items-center">
                   <input
@@ -54,19 +51,15 @@ const HomeSlider = () => {
         <SwiperSlide>
           <div className="bg-slide3 bg-cover bg-center">
             <div className="w-full h-full bg-[rgba(0,0,0,0.7)]">
-              <div className="w-[85%] mx-auto py-32 text-white">
-                <p className="text-6xl font-semibold mb-6">
+              <div className="w-[85%] mx-auto py-10 md:py-20 lg:py-32 text-white">
+                <p className="text-3xl md:text-4xl lg:text-6xl font-semibold mb-6">
                   Your Gateway to Opportunities
                 </p>
-                <p className="font-medium mb-10 w-[70%]">
+                <p className="font-medium mb-10 w-[70%] mx-auto md:mx-0 md:">
                   Our job hunting company website is your one-stop destination
                   for career opportunities. We provide comprehensive job
                   listings, expert career advice, and a platform for connecting
-                  with top employers. Explore a wide range of industries, find
-                  personalized job matches, and discover the resources you need
-                  to excel in your job search. Whether you are starting your
-                  career journey or seeking a new path, we are here to help you
-                  reach your professional goals.
+                  with top employers.
                 </p>
                 <div className="flex items-center">
                   <input
@@ -86,20 +79,16 @@ const HomeSlider = () => {
         <SwiperSlide>
           <div className="bg-slide2 bg-cover bg-center">
             <div className="w-full h-full bg-[rgba(0,0,0,0.7)]">
-              <div className="w-[85%] mx-auto py-32 text-white">
-                <p className="text-6xl font-semibold mb-6">
+              <div className="w-[85%] mx-auto py-10 md:py-20 lg:py-32 text-white">
+                <p className="text-3xl md:text-4xl lg:text-6xl font-semibold mb-6">
                   {/* Your Path to Success: Find Your Dream Job with Us */}
                   Your Path to Success
                 </p>
-                <p className="font-medium mb-10 w-[70%]">
+                <p className="font-medium mb-10 w-[70%] mx-auto md:mx-0 md:">
                   Our job hunting company website is your one-stop destination
                   for career opportunities. We provide comprehensive job
                   listings, expert career advice, and a platform for connecting
-                  with top employers. Explore a wide range of industries, find
-                  personalized job matches, and discover the resources you need
-                  to excel in your job search. Whether you are starting your
-                  career journey or seeking a new path, we are here to help you
-                  reach your professional goals.
+                  with top employers.
                 </p>
                 <div className="flex items-center">
                   <input
