@@ -23,7 +23,7 @@ const AllJobs = () => {
     setTyping(event.target.value);
   };
   return (
-    <div className="my-10">
+    <div className="mb-10">
       <Helmet>
         <title>JobNest || All Jobs</title>
       </Helmet>
@@ -43,10 +43,10 @@ const AllJobs = () => {
         </div>
       </div>
 
-      <div className="w-[85%] mx-auto">
+      <div className="w-[95%] lg:w-[85%] mx-auto">
         {allJobs ? (
-          <div className="my-8 flex flex-col gap-3">
-            <div className="border-2 border-theme2 border-them2 p-4 rounded-lg flex items-center justify-between bg-theme2 font-semibold">
+          <div className="my-8 flex flex-col gap-6 md:gap-3">
+            <div className="border-2 border-theme2 border-them2 p-1 md:p-4 rounded-lg flex flex-col gap-2 md:flex-row md:gap-0 items-center justify-between bg-theme2 font-semibold">
               <p className="w-14 text-center">Sl. No.</p>
               <p className="flex-1 text-center">Author Name</p>
               <p className="flex-1 text-center">Job Title</p>
@@ -58,7 +58,7 @@ const AllJobs = () => {
             {allJobs.map((job, i) => (
               <div
                 key={job._id}
-                className="border-2 p-4 rounded-lg flex items-center justify-between"
+                className="border-2 p-1 md:p-4 rounded-lg flex items-center justify-between   py-3 md:py-1 flex-col gap-3 md:flex-row md:gap-0"
               >
                 <p className="w-14 text-center">{i + 1}</p>
                 <p className="flex-1 text-center">{job.authorName}</p>

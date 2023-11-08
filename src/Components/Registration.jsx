@@ -72,9 +72,9 @@ const Registration = () => {
       <Helmet>
         <title>JobNest || Registration</title>
       </Helmet>
-      <div className="w-full h-[calc(100vh-54px)] bg-login bg-center bg-cover">
-        <div className="h-full w-full bg[rgba(240,170,20,0.5)] flex flex-row-reverse items-center justify-around">
-          <div className="w-[40%] space-y-8 bg-gradient-to-l from-theme to-theme2 p-8 rounded-lg">
+      <div className="w-full py-16 md:py-28 lg:py-36 bg-login bg-center bg-cover">
+        <div className="h-full w-full flex flex-col md:flex-row-reverse gap-10 md:gap-0 px-4 items-center justify-around">
+          <div className="w-full md:w-[40%] space-y-8 bg-gradient-to-l from-theme to-theme2 p-8 rounded-lg">
             <img className="w-1/2" src={logo} alt="" />
             <p className="text-5xl font-semibold text-white">
               Register to Join
@@ -84,7 +84,10 @@ const Registration = () => {
               omnis quisquam maiores aperiam. Quibusdam
             </p>
           </div>
-          <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white w-full p-8 rounded-lg"
+          >
             <p className="text-stone-500">
               If you have an Account with us, Please Log in
             </p>
@@ -152,49 +155,6 @@ const Registration = () => {
           </form>
         </div>
       </div>
-      {/* <form
-        onSubmit={handleSubmit}
-        className="border-2 w-[70%] mx-auto my-8 py-8 flex flex-col items-center gap-5"
-      >
-        <p className="text-center">Registration</p>
-        <input
-          required
-          className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
-          placeholder="Name"
-          type="text"
-          name="name"
-        />
-        <input
-          required
-          className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
-          placeholder="E-mail"
-          type="email"
-          name="email"
-        />
-        <div className="flex items-center gap-6">
-          <input
-            required
-            onChange={handleInput}
-            className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
-            type="file"
-            name="file"
-          />
-          <img className="w-12 h-12 rounded-full" src={preview} alt="" />
-        </div>
-        <input
-          required
-          className="bg-purple-400 placeholder:text-white text-white px-3 py-2 rounded-md"
-          placeholder="Password"
-          type="password"
-          name="password"
-        />
-        <input required type="checkbox" />
-        <input
-          className="bg-purple-400 font-semibold text-white px-4 py-1 rounded-full"
-          type="submit"
-          value="Register"
-        />
-      </form> */}
     </div>
   );
 };

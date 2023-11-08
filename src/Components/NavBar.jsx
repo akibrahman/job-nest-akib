@@ -72,7 +72,7 @@ const NavBar = () => {
                 to="/profile"
               >
                 <img
-                  className="w-6 h-6 md:w-8 md:h-8 rounded-full"
+                  className="w-8 h-8 rounded-full"
                   src={
                     user?.photoURL
                       ? user.photoURL
@@ -98,11 +98,27 @@ const NavBar = () => {
               </div>
             </div>
           ) : (
-            <Link to="login">
-              <p className="bg-theme px-3 py-1 rounded-full duration-300 select-none active:scale-90 text-white">
-                Login
-              </p>
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link to="login">
+                <p className="bg-theme px-3 py-1 rounded-full duration-300 select-none active:scale-90 text-white">
+                  Login
+                </p>
+              </Link>
+              <div className="block md:hidden">
+                <div
+                  onClick={() => {
+                    setNavbar(!navbar);
+                  }}
+                  className=""
+                >
+                  {navbar ? (
+                    <LiaTimesSolid className="text-2xl duration-300 active:scale-75 cursor-pointer select-none"></LiaTimesSolid>
+                  ) : (
+                    <HiOutlineBars3BottomRight className="text-2xl duration-300 active:scale-75 cursor-pointer select-none"></HiOutlineBars3BottomRight>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </nav>

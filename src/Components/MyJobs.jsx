@@ -78,7 +78,7 @@ const MyJobs = () => {
     });
   };
   return (
-    <div className="my-10 mb-52">
+    <div className="mb-52">
       <Helmet>
         <title>JobNest || My Jobs</title>
       </Helmet>
@@ -90,10 +90,10 @@ const MyJobs = () => {
         </div>
       </div>
 
-      <div className="w-[85%] mx-auto ">
+      <div className="w-[95%] lg:w-[85%] mx-auto ">
         {myJobs ? (
           <div className="my-8 flex flex-col gap-3">
-            <div className="border-2 border-them2 p-4 rounded-lg flex items-center justify-between bg-theme2 font-semibold">
+            <div className="border-2 border-them2 p-4 rounded-lg flex flex-col gap-1 md:flex-row md:gap-0 items-center justify-between bg-theme2 font-semibold">
               <p className="w-14 text-center">Sl. No.</p>
               <p className="flex-1 text-center">Job Title</p>
               <p className="flex-1 text-center">Posting Date</p>
@@ -105,7 +105,7 @@ const MyJobs = () => {
             {myJobs.map((job, i) => (
               <div
                 key={job._id}
-                className="border-2 p-4 rounded-lg flex items-center justify-between"
+                className="border-2 p-4 rounded-lg flex flex-col gap-2 md:flex-row md:gap-0 items-center justify-between"
               >
                 <p className="w-14 text-center">{i + 1}</p>
                 <p className="flex-1 text-center">{job.jobTitle}</p>

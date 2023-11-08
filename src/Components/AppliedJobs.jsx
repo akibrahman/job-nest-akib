@@ -49,7 +49,7 @@ const AppliedJobs = () => {
     },
   };
   return (
-    <div className="my-10 mb-52">
+    <div className="mb-52">
       <Helmet>
         <title>JobNest || Applied Jobs</title>
       </Helmet>
@@ -70,9 +70,12 @@ const AppliedJobs = () => {
               onChange={handlefilter}
               className="text-center focus:outline-none rounded-full p-1"
             >
-              <option value="all">All Jobs</option>
+              <option className="text-xs" value="all">
+                All Jobs
+              </option>
               {categories.map((category, i) => (
                 <option
+                  className="text-xs"
                   key={i + 1}
                   value={category.split(" ").join("").toLowerCase()}
                 >
@@ -86,8 +89,8 @@ const AppliedJobs = () => {
 
       <div ref={targetRef} className="my-6 w-[85%] mx-auto">
         {/* ref={targetRef} */}
-        <div>
-          <div className="border-2 border-theme2 border-them2 p-4 rounded-lg flex items-center justify-between bg-theme2 font-semibold">
+        <div className="flex flex-col gap-5 lg:gap-0">
+          <div className="border-2 border-theme2 border-them2 p-4 rounded-lg flex flex-col gap-1 md:flex-row md:gap-0 items-center justify-between bg-theme2 font-semibold">
             <p className="w-12 text-center">SL No.</p>
             <p className="flex-1 text-center">Company Logo</p>
             <p className="flex-1 text-center">Job Title</p>
@@ -99,7 +102,7 @@ const AppliedJobs = () => {
             filteredJobs.map((job, i) => (
               <div
                 key={job._id}
-                className="flex items-center justify-between border-b-2 p-4"
+                className="flex flex-col gap-2 md:flex-row md:gap-0 items-center justify-between border-b-2 p-4"
               >
                 <p className="w-12 text-center">{i + 1}</p>
                 <div className="flex-1 flex items-center justify-center">

@@ -140,17 +140,17 @@ const EditJob = () => {
           </p>
         </div>
       </div>
-      <div className="w-[75%] mx-auto my-10">
+      <div className="w-[95%] lg:w-[85%] mx-auto my-10">
         <form
           onSubmit={handleSubmit}
-          className="w-full flex flex-col items-center gap-10 p-5 px-10 border border-theme rounded-lg"
+          className="w-full flex flex-col items-center gap-5 md:gap-10 p-5 px-10 border border-theme rounded-lg"
         >
           <div className="flex items-center gap-4 font-semibold border-2 border-theme rounded-full px-3 py-2">
             <label htmlFor="">Job Post Creator:</label>
             <p className="text-theme text-xl">{job.authorName}</p>
           </div>
 
-          <div className="flex justify-between items-center w-full my-5">
+          <div className="flex flex-col gap-5 lg:flex-row lg:gap-0 justify-between items-center w-full my-5">
             <div className="flex items-center gap-4">
               <label className="font-semibold">Job Title</label>
               <input
@@ -162,8 +162,8 @@ const EditJob = () => {
                 name="jobTitle"
               />
             </div>
-            <div className="flex items-center gap-5">
-              <label className="font-semibold">Salary Range</label>
+            <div className="flex flex-col md:flex-row items-center gap-0 md:gap-5">
+              <label className="font-semibold mb-5 md:mb-0">Salary Range</label>
               <input
                 required
                 defaultValue={job.salaryRangeStart}
@@ -184,9 +184,9 @@ const EditJob = () => {
             </div>
           </div>
 
-          <div className="flex justify-between items-center w-full my-5 gap-6">
+          <div className="flex flex-col xl:flex-row justify-between items-center w-full my-5 gap-6">
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col md:flex-row items-center gap-4">
                 <label className="w-[130px] font-semibold">Company Logo</label>
                 <input
                   className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
@@ -205,8 +205,10 @@ const EditJob = () => {
                   alt=""
                 />
               </div>
-              <div className="flex items-center gap-4">
-                <label className="w-[130px] font-semibold">Banner</label>
+              <div className="flex flex-col md:flex-row items-center gap-4">
+                <label className="w-[130px] font-semibold text-center md:text-left">
+                  Banner
+                </label>
                 <input
                   className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
                   onChange={handleBannerImgInput}

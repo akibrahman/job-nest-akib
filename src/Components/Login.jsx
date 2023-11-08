@@ -35,9 +35,9 @@ const Login = () => {
         <title>JobNest || Login</title>
       </Helmet>
 
-      <div className="w-full h-[calc(100vh-54px)] bg-login bg-center bg-cover">
-        <div className="h-full w-full bg[rgba(240,170,20,0.5)] flex items-center justify-around">
-          <div className="w-[40%] space-y-8 bg-theme p-8 rounded-lg">
+      <div className="w-full py-16 md:py-28 lg:py-36 bg-login bg-center bg-cover">
+        <div className="h-full w-full flex flex-col md:flex-row gap-10 md:gap-0 px-4 items-center justify-around">
+          <div className="w-full md:w-[40%] space-y-8 bg-theme p-8 rounded-lg">
             <img className="w-1/2" src={logo} alt="" />
             <p className="text-5xl font-semibold text-white">
               Login To You Now
