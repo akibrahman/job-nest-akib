@@ -137,14 +137,14 @@ const JobDetailsPage = () => {
         <title>JobNest || Details Page</title>
       </Helmet>
       <div className="bg-banner flex items-center justify-center">
-        <div className="h-full w-full bg-[rgba(0,0,0,0.8)] py-10">
-          <p className="text-center text-4xl font-bold text-white">
+        <div className="h-full w-full bg-[rgba(0,0,0,0.8)] py-5 md:py-10">
+          <p className="text-center text-xl md:text-4xl font-bold text-white">
             Job Details Page
           </p>
         </div>
       </div>
 
-      <div className="w-[85%] mx-auto my-10 grid grid-cols-3 gap-8">
+      <div className="w-[85%] mx-auto my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div className="">
           <img
             className="w-full rounded-lg block"
@@ -197,7 +197,7 @@ const JobDetailsPage = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="lg:col-span-2">
           <p className="font-bold text-3xl">{job.jobTitle}</p>
           <p className="font-semibold mt-4">
             Deadline:{" "}

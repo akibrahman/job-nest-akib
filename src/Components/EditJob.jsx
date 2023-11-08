@@ -147,17 +147,17 @@ const EditJob = () => {
         >
           <div className="flex items-center gap-4 font-semibold border-2 border-theme rounded-full px-3 py-2">
             <label htmlFor="">Job Post Creator:</label>
-            <p className="text-theme text-xl">{job.authorName}</p>
+            <p className="text-theme text-lg md:text-xl">{job.authorName}</p>
           </div>
 
           <div className="flex flex-col gap-5 lg:flex-row lg:gap-0 justify-between items-center w-full my-5">
-            <div className="flex items-center gap-4">
-              <label className="font-semibold">Job Title</label>
+            <div className="flex items-center gap-">
+              <label className="font-semibold w-[80px]">Job Title</label>
               <input
                 defaultValue={job.jobTitle}
                 required
                 placeholder="Enter Job Title"
-                className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
+                className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full w-[250px]"
                 type="text"
                 name="jobTitle"
               />
@@ -226,7 +226,7 @@ const EditJob = () => {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col md:flex-row items-center gap-4">
                 <label className="w-[110px] font-semibold">Posting Date</label>
                 <input
                   className="border-2 border-theme focus:outline-none font-semibold px-3 py-2 rounded-full"
@@ -237,7 +237,7 @@ const EditJob = () => {
                 />
               </div>
               {/* Test  */}
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col md:flex-row items-center gap-4">
                 <label className="w-[110px] font-semibold">Deadline</label>
                 <DatePicker
                   required

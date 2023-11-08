@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="flex flex-col md:flex-row gap-10 md:gap-0 items-center py-20 px-8 lg:px-20 bg-gradient-to-r from-theme to-theme2">
       <div className="w-[90%] md:w-[40%] space-y-5">
-        <img className="w-44 mx-auto" src={logo} alt="" />
+        <img className="w-44 mx-auto lg:mx-0" src={logo} alt="" />
         <p className="leading-5 text-center md:text-left">
           Discover your dream job on our platform, where opportunities meet
           ambition.

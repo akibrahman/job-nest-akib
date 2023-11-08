@@ -99,9 +99,9 @@ const Profile = () => {
       >
         <form
           onSubmit={handleUpdate}
-          className="w-1/2 h-[65%] bg-white rounded-lg shadow-2xl"
+          className="w-[95%] lg:w-1/2 py-10 md:py-20 lg:py-32 bg-white rounded-lg shadow-2xl"
         >
-          <div className="flex items-center my-10 justify-center gap-6 px-10">
+          <div className="flex flex-col md:flex-row items-center my-10 justify-center gap-6 px-10">
             <img
               className="w-56 h-56 rounded-lg"
               src={ppPreview ? ppPreview : user.photoURL}
@@ -146,7 +146,7 @@ const Profile = () => {
           </p>
         </div>
       </div>
-      <div className="flex items-center my-10 justify-center gap-6">
+      <div className="flex flex-col md:flex-row items-center my-10 justify-center gap-6">
         <img className="w-56 h-56 rounded-lg" src={user.photoURL} alt="" />
         <div className="font-semibold space-y-3">
           <p className="border-2 border-theme px-4 py-2 rounded-full">
