@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import { LiaTimesSolid } from "react-icons/lia";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import logo from "/logo.png";
 
@@ -17,25 +17,28 @@ const NavBar = () => {
           navbar ? "left-0" : "-translate-x-full"
         }`}
       >
-        <Link to="/">
+        <NavLink to="/">
           <p>Home</p>
-        </Link>
-        <Link to="/all-jobs">
+        </NavLink>
+        <NavLink to="/all-jobs">
           <p>All Jobs</p>
-        </Link>
+        </NavLink>
         {user && (
           <>
-            <Link to="/add-a-job">
+            <NavLink to="/add-a-job">
               <p>Add a Job</p>
-            </Link>
-            <Link to="/my-jobs">
+            </NavLink>
+            <NavLink to="/my-jobs">
               <p>My Jobs</p>
-            </Link>
-            <Link to="/applied-jobs">
+            </NavLink>
+            <NavLink to="/applied-jobs">
               <p>Applied Jobs</p>
-            </Link>
+            </NavLink>
           </>
         )}
+        <NavLink to="/blogs">
+          <p>Blogs</p>
+        </NavLink>
       </div>
       <nav className="w-[85%] md:w-[95%] lg:w-[85%] mx-auto flex items-center justify-between py-2 text-black font-semibold">
         <img
@@ -44,25 +47,28 @@ const NavBar = () => {
           alt=""
         />
         <div className="hidden md:flex items-center gap-4">
-          <Link to="/">
+          <NavLink to="/">
             <p>Home</p>
-          </Link>
-          <Link to="/all-jobs">
+          </NavLink>
+          <NavLink to="/all-jobs">
             <p>All Jobs</p>
-          </Link>
+          </NavLink>
           {user && (
             <>
-              <Link to="/add-a-job">
+              <NavLink to="/add-a-job">
                 <p>Add a Job</p>
-              </Link>
-              <Link to="/my-jobs">
+              </NavLink>
+              <NavLink to="/my-jobs">
                 <p>My Jobs</p>
-              </Link>
-              <Link to="/applied-jobs">
+              </NavLink>
+              <NavLink to="/applied-jobs">
                 <p>Applied Jobs</p>
-              </Link>
+              </NavLink>
             </>
           )}
+          <NavLink to="/blogs">
+            <p>Blogs</p>
+          </NavLink>
         </div>
         <div>
           {user ? (

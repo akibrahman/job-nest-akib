@@ -5,6 +5,7 @@ import HomePage from "../Pages/HomePage";
 import AddJob from "./AddJob";
 import AllJobs from "./AllJobs";
 import AppliedJobs from "./AppliedJobs";
+import Blog from "./Blog";
 import EditJob from "./EditJob";
 import JobDetailsPage from "./JobDetailsPage";
 import Login from "./Login";
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
             <EditJob></EditJob>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/Blogs",
+        element: <Blog></Blog>,
       },
     ],
   },
