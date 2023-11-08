@@ -62,7 +62,7 @@ const TabWiseJobs = () => {
                 <div className="flex flex-col gap-1 w-full">
                   <p className="font-semibold ">{job.jobTitle}</p>
                   <div className="flex flex-col gap-1 text-sm ">
-                    <div className="flex gap-0 justify-between md:gap-6 md:justify-center">
+                    <div className="flex gap-0 justify-between md:gap-6 md:justify-start">
                       <p>Author : {job.authorName}</p>
                       <p>Applicants : {job.applicants}</p>
                     </div>

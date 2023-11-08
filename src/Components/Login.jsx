@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { Helmet } from "react-helmet";
+import { TailSpin } from "react-loader-spinner";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "./AuthProvider";
@@ -9,7 +10,9 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const spinner = useRef();
   const handleLogin = (event) => {
+    spinner.current.classList.remove("hidden");
     event.preventDefault();
     const data = event.target;
     login(data.email.value, data.password.value)
@@ -18,6 +21,7 @@ const Login = () => {
           position: "top-center",
           autoClose: 2000,
         });
+        spinner.current.classList.add("hidden");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
@@ -26,7 +30,13 @@ const Login = () => {
             position: "top-center",
             autoClose: 2000,
           });
+        } else {
+          toast.error(error.code, {
+            position: "top-center",
+            autoClose: 2000,
+          });
         }
+        spinner.current.classList.add("hidden");
       });
   };
   return (
@@ -69,12 +79,26 @@ const Login = () => {
               />
             </div>
             <div className="mt-8 flex items-center justify-between">
-              <button
-                type="submit"
-                className="font-semibold text-white bg-theme px-5 py-2 rounded-full active:scale-90 duration-300"
-              >
-                Login
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="submit"
+                  className="font-semibold text-white bg-theme px-5 py-2 rounded-full active:scale-90 duration-300"
+                >
+                  Login
+                </button>
+                <div ref={spinner} className="hidden">
+                  <TailSpin
+                    height="30"
+                    width="30"
+                    color="#F0AA14"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  />
+                </div>
+              </div>
               <Link to="/registration">
                 <button>
                   or,{" "}

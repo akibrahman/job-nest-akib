@@ -1,7 +1,8 @@
 import axios from "axios";
 import { updateProfile } from "firebase/auth";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
+import { TailSpin } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "./AuthProvider";
@@ -10,9 +11,12 @@ import logo from "/logo.png";
 const Registration = () => {
   const { registration, auth, authReloader, setAuthReloader } =
     useContext(AuthContext);
+  const spinner = useRef();
   const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
+  const passwordPatternL = /.*[A-Z].*/;
+  const passwordPatternN = /.*[0-9].*/;
   //! BASE64 Convertor
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -35,7 +39,33 @@ const Registration = () => {
   //! Registration
   const handleSubmit = (event) => {
     event.preventDefault();
+    spinner.current.classList.remove("hidden");
     const data = event.target;
+    if (data.password.value.length < 6) {
+      toast.info("Password should be in 6 chars", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+      spinner.current.classList.add("hidden");
+      return;
+    }
+    if (!passwordPatternL.test(data.password.value)) {
+      toast.info("Password should have atlest one Capital Letter", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+      spinner.current.classList.add("hidden");
+      return;
+    }
+    if (!passwordPatternN.test(data.password.value)) {
+      toast.info("Password should have atlest one Number", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+      spinner.current.classList.add("hidden");
+      return;
+    }
+
     const imgData = new FormData();
     imgData.append("image", file);
     axios
@@ -56,14 +86,23 @@ const Registration = () => {
                   position: "top-center",
                   autoClose: 2000,
                 });
+                spinner.current.classList.add("hidden");
                 navigate("/");
               })
               .catch((error) => {
-                console.log(error);
+                toast.error(error.code, {
+                  position: "top-center",
+                  autoClose: 2000,
+                });
+                spinner.current.classList.add("hidden");
               });
           })
           .catch((error) => {
-            console.log(error);
+            toast.error(error.code, {
+              position: "top-center",
+              autoClose: 2000,
+            });
+            spinner.current.classList.add("hidden");
           });
       });
   };
@@ -86,7 +125,7 @@ const Registration = () => {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="bg-white w-full p-8 rounded-lg"
+            className="bg-white w-full lg:w-auto p-8 rounded-lg"
           >
             <p className="text-stone-500">
               If you have an Account with us, Please Log in
@@ -140,12 +179,26 @@ const Registration = () => {
               <input required className="" type="checkbox" />
             </div>
             <div className="mt-8 flex items-center justify-between">
-              <button
-                type="submit"
-                className="font-semibold text-white bg-theme px-5 py-2 rounded-full active:scale-90 duration-300"
-              >
-                Register
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="submit"
+                  className="font-semibold text-white bg-theme px-5 py-2 rounded-full active:scale-90 duration-300"
+                >
+                  Register
+                </button>
+                <div ref={spinner} className="hidden">
+                  <TailSpin
+                    height="30"
+                    width="30"
+                    color="#F0AA14"
+                    ariaLabel="tail-spin-loading"
+                    radius="1"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  />
+                </div>
+              </div>
               <Link to="/login">
                 <button>
                   or, <span className="font-medium text-theme">Login</span>

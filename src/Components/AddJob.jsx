@@ -1,9 +1,10 @@
 import axios from "axios";
 import moment from "moment/moment";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Helmet } from "react-helmet";
+import { TailSpin } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
@@ -11,6 +12,7 @@ import { AuthContext } from "./AuthProvider";
 const AddJob = () => {
   const { user } = useContext(AuthContext);
   const axiosInstance = useAxios();
+  const spinner = useRef();
   const [selectedDate, setSelectedDate] = useState(null);
 
   const [companyImg, setCompanyImg] = useState(null);
@@ -34,6 +36,7 @@ const AddJob = () => {
 
   //! Handle Submit
   const handleSubmit = (event) => {
+    spinner.current.classList.remove("hidden");
     event.preventDefault();
     const data = event.target;
     const companyImgData = new FormData();
@@ -79,20 +82,34 @@ const AddJob = () => {
                   position: "top-center",
                   autoClose: 2000,
                 });
+                spinner.current.classList.add("hidden");
                 data.reset();
                 setBannerImgPreview(null);
                 setCompanyImgPreview(null);
               })
               .catch((error) => {
                 console.log(error);
+                spinner.current.classList.add("hidden");
+                toast.error("Something Went Wrong", {
+                  position: "top-center",
+                  autoClose: 2000,
+                });
               });
           })
           .catch((error) => {
             console.log("Banner Photo Error - ", error);
+            toast.error("Something Went Wrong", {
+              position: "top-center",
+              autoClose: 2000,
+            });
           });
       })
       .catch((error) => {
         console.log("Company Photo Error - ", error);
+        toast.error("Something Went Wrong", {
+          position: "top-center",
+          autoClose: 2000,
+        });
       });
   };
   //! Function to handle date selection
@@ -251,11 +268,25 @@ const AddJob = () => {
               rows="10"
             ></textarea>
           </div>
-          <input
-            type="submit"
-            value="Add"
-            className="bg-theme px-4 py-2 rounded-full font-semibold text-white active:scale-90 duration-300 cursor-pointer"
-          />
+          <div className="flex items-center gap-2">
+            <input
+              type="submit"
+              value="Add"
+              className="bg-theme px-4 py-2 rounded-full font-semibold text-white active:scale-90 duration-300 cursor-pointer"
+            />
+            <div ref={spinner} className="hidden">
+              <TailSpin
+                height="30"
+                width="30"
+                color="#F0AA14"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
+          </div>
         </form>
       </div>
     </div>

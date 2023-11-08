@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
+import { TailSpin } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../Hooks/useAxios";
@@ -10,6 +11,7 @@ import loader from "/infinite.svg";
 const EditJob = () => {
   const { id } = useParams();
   const axiosInstance = useAxios();
+  const spinner = useRef();
   const [job, setJob] = useState(null);
   const [newDeadline, setNewDeadline] = useState(null);
   const [companyImg, setCompanyImg] = useState(null);
@@ -25,7 +27,7 @@ const EditJob = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [id]);
+  }, [id, axiosInstance]);
 
   const handleDateChange = (date) => {
     setNewDeadline(date);
@@ -51,6 +53,7 @@ const EditJob = () => {
 
   //! Handle Submit
   const handleSubmit = async (event) => {
+    spinner.current.classList.remove("hidden");
     event.preventDefault();
     const form = event.target;
 
@@ -75,6 +78,7 @@ const EditJob = () => {
       .patch(`/update-a-job/${id}`, updatedJob)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
+          spinner.current.classList.add("hidden");
           toast.success("Job Updated", {
             position: "top-center",
             autoClose: 2000,
@@ -94,11 +98,19 @@ const EditJob = () => {
             })
             .catch((error) => {
               console.log(error);
+              toast.error("Something went wrong", {
+                position: "top-center",
+                autoClose: 2000,
+              });
             });
         }
       })
       .catch((error) => {
         console.log("This is single upgration error", error);
+        toast.error("Something went wrong", {
+          position: "top-center",
+          autoClose: 2000,
+        });
       });
   };
   //! BASE64 Convertor
@@ -281,11 +293,25 @@ const EditJob = () => {
               rows="10"
             ></textarea>
           </div>
-          <input
-            type="submit"
-            value="Update"
-            className="bg-theme px-4 py-2 rounded-full font-semibold text-white active:scale-90 duration-300 cursor-pointer"
-          />
+          <div className="flex items-center gap-2">
+            <input
+              type="submit"
+              value="Update"
+              className="bg-theme px-4 py-2 rounded-full font-semibold text-white active:scale-90 duration-300 cursor-pointer"
+            />
+            <div ref={spinner} className="hidden">
+              <TailSpin
+                height="30"
+                width="30"
+                color="#F0AA14"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            </div>
+          </div>
         </form>
       </div>
     </div>

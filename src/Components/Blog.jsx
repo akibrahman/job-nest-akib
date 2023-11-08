@@ -1,12 +1,12 @@
 const Blog = () => {
   return (
-    <div className="w-[85%] mx-auto my-10">
+    <div className="w-[95%] md:w-[85%] mx-auto my-10">
       <p className="text-xl font-semibold bg-theme px-10 py-3 text-white">
         Blog
       </p>
       <div className="my-10">
         <p className="border w-max px-3 py-2 rounded-full border-theme mb-5">
-          Quiestion: 01
+          Question: 01
         </p>
         <p className="border-b-2 border-l-2 p-2 mb-5 border-theme font-bold">
           What is an access token and refresh token? How do they work and where
