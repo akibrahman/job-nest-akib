@@ -50,7 +50,7 @@ const AppliedJobs = () => {
     },
   };
   return (
-    <div className="mb-52">
+    <div className="mb-52 w-[90%]">
       <Helmet>
         <title>JobNest || Applied Jobs</title>
       </Helmet>
@@ -88,7 +88,7 @@ const AppliedJobs = () => {
         </div>
       </div>
 
-      <div ref={targetRef} className="my-6 w-[85%] mx-auto">
+      <div ref={targetRef} className="my-6 w-full mx-auto">
         {/* ref={targetRef} */}
         <div className="flex flex-col gap-5 lg:gap-0">
           <div className="border-2 border-theme2 border-them2 p-4 rounded-lg flex flex-col gap-1 md:flex-row md:gap-0 items-center justify-between bg-theme2 font-semibold">

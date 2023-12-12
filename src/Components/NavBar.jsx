@@ -58,20 +58,20 @@ const NavBar = () => {
           <NavLink to="/">
             <p>Home</p>
           </NavLink>
-          <NavLink to="/all-jobs">
+          {/* <NavLink to="/all-jobs">
             <p>All Jobs</p>
-          </NavLink>
+          </NavLink> */}
           {user && (
             <>
-              <NavLink to="/add-a-job">
+              {/* <NavLink to="/add-a-job">
                 <p>Add a Job</p>
-              </NavLink>
-              <NavLink to="/my-jobs">
+              </NavLink> */}
+              {/* <NavLink to="/my-jobs">
                 <p>My Jobs</p>
-              </NavLink>
-              <NavLink to="/applied-jobs">
+              </NavLink> */}
+              {/* <NavLink to="/applied-jobs">
                 <p>Applied Jobs</p>
-              </NavLink>
+              </NavLink> */}
             </>
           )}
           <NavLink to="/blogs">
@@ -83,7 +83,7 @@ const NavBar = () => {
             <div className="flex items-center gap-2">
               <Link
                 className="flex items-center gap-3 border px-1 py-1 pr-2 rounded-full"
-                to="/profile"
+                to="/dashboard/profile"
               >
                 <img
                   className="w-8 h-8 rounded-full"

@@ -7,8 +7,7 @@ import NavBar from "./Components/NavBar";
 function App() {
   return (
     <div className="">
-      <ToastContainer position="top-center" autoClose={2000} />
-      <ToastContainer />
+      <ToastContainer position="top-left" autoClose={2000} />
       <NavBar></NavBar>
       <Outlet></Outlet>
       <Footer></Footer>

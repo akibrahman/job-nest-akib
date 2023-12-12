@@ -142,7 +142,7 @@ const AddJob = () => {
           </p>
         </div>
       </div>
-      <div className="w-[95%] lg:w-[85%] mx-auto my-10">
+      <div className="w-[95%] lg:w-full mx-auto my-10">
         <motion.form
           initial={{ zoom: 0 }}
           animate={{ zoom: 1 }}
@@ -186,7 +186,7 @@ const AddJob = () => {
             </div>
           </div>
 
-          <div className="flex flex-col xl:flex-row justify-between items-center w-full my-5 gap-6">
+          <div className="flex flex-col xxl:flex-row justify-between items-center w-full my-5 gap-6">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col md:flex-row items-center gap-4">
                 <label className="w-[130px] font-semibold">Company Logo</label>

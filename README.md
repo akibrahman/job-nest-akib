@@ -14,4 +14,9 @@ Jobnest is a job finding marketplace where you can easily post a job and find a 
 - You can see your posted job and applied job Separately
 - You will be notified if the deadline is over or you are the creator of that post when applying.
 
+### Here are Admin Credentials:
+
+- Admin E-mail : `akibrahmann@gmail.com`
+- Admin Password : `Aaaaaa@1`
+
 ## [@Live preview Link - JobNest](https://jobnest-akib.web.app/profile)

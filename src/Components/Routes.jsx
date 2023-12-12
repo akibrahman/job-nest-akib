@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
+import Dashboard from "../Layouts/Dashboard";
 import ErrorPage from "../Pages/ErrorPage";
 import HomePage from "../Pages/HomePage";
 import AddJob from "./AddJob";
@@ -32,42 +33,15 @@ export const router = createBrowserRouter([
         path: "/registration",
         element: <Registration></Registration>,
       },
-      {
-        path: "/profile",
-        element: (
-          <PrivateRoute>
-            <Profile></Profile>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/add-a-job",
-        element: (
-          <PrivateRoute>
-            <AddJob></AddJob>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/all-jobs",
-        element: <AllJobs></AllJobs>,
-      },
-      {
-        path: "/my-jobs",
-        element: (
-          <PrivateRoute>
-            <MyJobs></MyJobs>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/applied-jobs",
-        element: (
-          <PrivateRoute>
-            <AppliedJobs></AppliedJobs>
-          </PrivateRoute>
-        ),
-      },
+      // {
+      //   path: "/profile",
+      //   element: (
+      //     <PrivateRoute>
+      //       <Profile></Profile>
+      //     </PrivateRoute>
+      //   ),
+      // },
+
       {
         path: "/job-details/:id",
         element: (
@@ -87,6 +61,50 @@ export const router = createBrowserRouter([
       {
         path: "/Blogs",
         element: <Blog></Blog>,
+      },
+    ],
+  },
+  //! Admin
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-a-job",
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-jobs",
+        element: <AllJobs></AllJobs>,
+      },
+      //! USER
+      {
+        path: "applied-jobs",
+        element: (
+          <PrivateRoute>
+            <AppliedJobs></AppliedJobs>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-jobs",
+        element: (
+          <PrivateRoute>
+            <MyJobs></MyJobs>
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -45,7 +45,7 @@ const AllJobs = () => {
         </div>
       </div>
 
-      <div className="w-[95%] lg:w-[85%] mx-auto">
+      <div className="w-[95%] lg:w-full mx-auto">
         {allJobs ? (
           <div className="my-8 flex flex-col gap-6 md:gap-3">
             <div className="border-2 border-theme2 border-them2 p-1 md:p-4 rounded-lg flex flex-col gap-2 md:flex-row md:gap-0 items-center justify-between bg-theme2 font-semibold">

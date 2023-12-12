@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
   };
   //! State Listener
   useEffect(() => {
-    const un = onAuthStateChanged(auth, (currentUser) => {
+    const un = onAuthStateChanged(auth, async (currentUser) => {
       const userEmail = currentUser?.email || user?.email;
       if (currentUser) {
         console.log(currentUser);
@@ -60,6 +60,15 @@ const AuthProvider = ({ children }) => {
           })
           .catch();
         setUser(currentUser);
+        const userData = {
+          name: currentUser.displayName,
+          email: currentUser.email,
+          role: "general",
+        };
+        await axios.put(
+          `${import.meta.env.VITE_serverUrl}/all-users/${currentUser.email}`,
+          userData
+        );
         setPrivateRouteLoader(false);
       } else {
         axios
@@ -79,7 +88,7 @@ const AuthProvider = ({ children }) => {
       }
     });
     return () => un();
-  }, [auth, authReloader]);
+  }, [auth, authReloader, user?.email]);
 
   const contextInfo = {
     auth,

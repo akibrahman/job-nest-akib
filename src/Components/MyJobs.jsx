@@ -79,7 +79,7 @@ const MyJobs = () => {
     });
   };
   return (
-    <div className="mb-52">
+    <div className="mb-52 w-[90%]">
       <Helmet>
         <title>JobNest || My Jobs</title>
       </Helmet>
@@ -91,7 +91,7 @@ const MyJobs = () => {
         </div>
       </div>
 
-      <div className="w-[95%] lg:w-[85%] mx-auto ">
+      <div className="w-[95%] lg:w-full mx-auto ">
         {myJobs ? (
           <div className="my-8 flex flex-col gap-3">
             <div className="border-2 border-them2 p-4 rounded-lg flex flex-col gap-1 md:flex-row md:gap-0 items-center justify-between bg-theme2 font-semibold">

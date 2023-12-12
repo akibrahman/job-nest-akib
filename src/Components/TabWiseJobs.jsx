@@ -50,8 +50,6 @@ const TabWiseJobs = () => {
         <div className=" my-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {jobs.map((job) => (
             <motion.div
-              drag
-              dragConstraints={{ left: 10, right: 10, top: 10, bottom: 10 }}
               initial={{
                 x: 100,
                 zoom: 0,
