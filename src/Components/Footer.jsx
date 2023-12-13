@@ -21,7 +21,7 @@ const Footer = () => {
           />
           <button
             onClick={async () => {
-              const res = await axiosInstance.post("/test-schema");
+              const res = await axiosInstance.post("/test-cmd");
               console.log(res.data);
             }}
             className="font-semibold bg-white px-3 py-1 rounded-full"

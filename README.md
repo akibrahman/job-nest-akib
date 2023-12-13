@@ -16,7 +16,7 @@ Jobnest is a job finding marketplace where you can easily post a job and find a 
 
 ### Here are Admin Credentials:
 
-- Admin E-mail : `akibrahmann@gmail.com`
-- Admin Password : `Aaaaaa@1`
+- Admin E-mail : `akibrahman5200@gmail.com`
+- Admin Password : `Aaaaaa1`
 
 ## [@Live preview Link - JobNest](https://jobnest-akib.web.app/profile)

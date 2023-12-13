@@ -131,7 +131,7 @@ const AddJob = () => {
     setBannerImgPreview(base64);
   };
   return (
-    <div className="">
+    <div className="w-[95%]">
       <Helmet>
         <title>JobNest || Add Job</title>
       </Helmet>

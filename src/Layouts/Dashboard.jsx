@@ -1,16 +1,34 @@
 import { CgProfile } from "react-icons/cg";
 import { FaBars } from "react-icons/fa";
-import { FaHouse, FaUserGroup } from "react-icons/fa6";
-import { GiCampCookingPot, GiMeal } from "react-icons/gi";
+import {
+  FaFonticonsFi,
+  FaHouse,
+  FaPersonMilitaryPointing,
+  FaUserGroup,
+} from "react-icons/fa6";
+import { GiCampCookingPot } from "react-icons/gi";
 import { ImProfile } from "react-icons/im";
 import { MdOutlineRateReview } from "react-icons/md";
 // import { TbCoinTaka } from "react-icons/tb";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Components/AuthProvider";
+import useAxios from "../Hooks/useAxios";
 import useRole from "../Hooks/useRole";
 // import useRole from "../Hooks/useRole";
 
 const Dashboard = () => {
+  const axiosInstance = useAxios();
+  const [isReqed, setIsReqed] = useState(false);
+  const [reloader, setReloader] = useState(false);
   const { role } = useRole();
+  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    axiosInstance
+      .get(`/user?email=${user?.email}`)
+      .then((data) => setIsReqed(data.data.requested));
+  }, [user?.email, axiosInstance, user, reloader]);
 
   return (
     <div className={`drawer lg:drawer-open`}>
@@ -47,8 +65,51 @@ const Dashboard = () => {
                 </li>
                 <li className="text-[#fff] font-medium">
                   <NavLink to="/dashboard/applied-jobs">
-                    <GiMeal />
+                    <FaFonticonsFi />
                     My Applied Jobs
+                  </NavLink>
+                </li>
+                {isReqed == "false" ? (
+                  <li
+                    onClick={async () => {
+                      const data = await axiosInstance.put(
+                        `/req-for-host?email=${user.email}`
+                      );
+                      if (data.data.acknowledged) {
+                        setReloader(!reloader);
+                        toast.success("Request Sent");
+                      }
+                    }}
+                    className="text-theme bg-white rounded-md mt-20 font-medium"
+                  >
+                    <a>
+                      <FaPersonMilitaryPointing />
+                      Request to be Host
+                    </a>
+                  </li>
+                ) : (
+                  <li className="text-theme bg-white rounded-md mt-20 font-medium pointer-events-none">
+                    <a>
+                      <FaPersonMilitaryPointing />
+                      Request Sent
+                    </a>
+                  </li>
+                )}
+              </>
+            )}
+            {/* User Panel  */}
+            {role === "host" && (
+              <>
+                <li className="text-[#fff] font-medium">
+                  <NavLink to="/dashboard/profile">
+                    <CgProfile />
+                    My Profile
+                  </NavLink>
+                </li>
+                <li className="text-[#fff] font-medium">
+                  <NavLink to="/dashboard/add-a-job">
+                    <GiCampCookingPot />
+                    Add Job
                   </NavLink>
                 </li>
                 <li className="text-[#fff] font-medium">
@@ -69,9 +130,15 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li className="text-[#fff] font-medium">
+                  <NavLink to="/dashboard/manage-users-admin">
+                    <ImProfile />
+                    Manage Users
+                  </NavLink>
+                </li>
+                <li className="text-[#fff] font-medium">
                   <NavLink to="/dashboard/all-jobs-admin">
                     <FaUserGroup />
-                    All Jobs
+                    Manage Jobs
                   </NavLink>
                 </li>
                 <li className="text-[#fff] font-medium">

@@ -11,6 +11,7 @@ import Blog from "./Blog";
 import EditJob from "./EditJob";
 import JobDetailsPage from "./JobDetailsPage";
 import Login from "./Login";
+import ManageUsersAdmin from "./ManageUsersAdmin";
 import MyJobs from "./MyJobs";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "./Profile";
@@ -79,6 +80,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-users-admin",
+        element: (
+          <PrivateRoute>
+            <ManageUsersAdmin />
           </PrivateRoute>
         ),
       },

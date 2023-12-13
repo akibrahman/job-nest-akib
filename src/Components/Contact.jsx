@@ -84,30 +84,35 @@ const Contact = () => {
             placeholder="Name"
             type="text"
             name="name"
+            required
           />
           <input
             className="focus:outline-none px-6 py-5 bg-transparent border w-full"
             placeholder="Company"
             type="text"
             name="company"
+            required
           />
           <input
             className="focus:outline-none px-6 py-5 bg-transparent border w-full"
             placeholder="E-mail"
             type="email"
             name="email"
+            required
           />
           <input
             className="focus:outline-none px-6 py-5 bg-transparent border w-full"
             placeholder="Phone"
             type="text"
             name="phone"
+            required
           />
           <textarea
             className="focus:outline-none px-6 py-5 bg-transparent border w-full"
             placeholder="Message"
             rows="10"
             name="message"
+            required
           ></textarea>
           <button className="block mx-auto bg-theme px-4 py-2 rounded-full font-semibold duration-300 active:scale-90">
             Submit

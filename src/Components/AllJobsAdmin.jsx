@@ -3,6 +3,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { BsArrowRight } from "react-icons/bs";
+import { FaEdit, FaTimes } from "react-icons/fa";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAxios from "../Hooks/useAxios";
@@ -25,7 +26,7 @@ const AllJobsAdmin = () => {
     // setAllJobs([]);
   };
   return (
-    <div className="mb-10">
+    <div className="mb-10 w-[95%]">
       <Helmet>
         <title>JobNest || All Jobs</title>
       </Helmet>
@@ -77,14 +78,32 @@ const AllJobsAdmin = () => {
                   <span>{job.salaryRangeStart}</span>-
                   <span>{job.salaryRangeEnd}</span>
                 </p>
-                <Link
-                  className="flex-1 text-center"
-                  to={`/job-details/${job._id}`}
-                >
-                  <button className="bg-theme text-white font-semibold px-4 py-1 rounded-lg active:scale-90 duration-300 cursor-pointer select-none flex items-center justify-center gap-2 mx-auto">
-                    View <BsArrowRight></BsArrowRight>
-                  </button>
-                </Link>
+                <div className="flex gap-2">
+                  <Link
+                    className="flex-1 text-center pointer-events-none opacity-40"
+                    to={`/job-details/${job._id}`}
+                  >
+                    <button className="bg-orange-400 text-white font-semibold p-2 rounded-lg active:scale-90 duration-300 cursor-pointer select-none flex items-center justify-center">
+                      <FaEdit></FaEdit>
+                    </button>
+                  </Link>
+                  <Link
+                    className="flex-1 text-center pointer-events-none opacity-40"
+                    to={`/job-details/${job._id}`}
+                  >
+                    <button className="bg-red-500 text-white font-semibold p-2 rounded-lg active:scale-90 duration-300 cursor-pointer select-none flex items-center justify-center">
+                      <FaTimes></FaTimes>
+                    </button>
+                  </Link>
+                  <Link
+                    className="flex-1 text-center"
+                    to={`/job-details/${job._id}`}
+                  >
+                    <button className="bg-theme text-white font-semibold p-2 rounded-lg active:scale-90 duration-300 cursor-pointer select-none flex items-center justify-center gap-2 mx-auto">
+                      <BsArrowRight></BsArrowRight>
+                    </button>
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
