@@ -1,8 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { updateProfile } from "firebase/auth";
+import moment from "moment";
 import { useContext, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
+import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
 
 const Profile = () => {
@@ -11,6 +14,21 @@ const Profile = () => {
   const updateModal = useRef();
   const [ppFile, setPpFile] = useState();
   const [ppPreview, setPpPreview] = useState(null);
+  const axiosInstance = useAxios();
+
+  const {
+    data: userFromDB,
+    // isLoading,
+    // refetch,
+  } = useQuery({
+    queryKey: ["my-profile"],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/user?email=${user.email}`);
+      return res.data;
+    },
+    enabled: user ? true : false,
+  });
+  console.log(userFromDB);
 
   //! BASE64 Convertor
   const convertBase64 = (file) => {
@@ -87,6 +105,8 @@ const Profile = () => {
       });
   };
 
+  if (!userFromDB || !user) return <p>Loading.......</p>;
+
   return (
     <div className="relative mb-32">
       <Helmet>
@@ -157,7 +177,11 @@ const Profile = () => {
           </p>
           <p className="border-2 border-theme px-4 py-2 rounded-full">
             Created At:{" "}
-            {user.metadata.creationTime.split(" ").slice(0, 4).join(" ")}
+            {moment(userFromDB.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
+          </p>
+          <p className="border-2 border-theme px-4 py-2 rounded-full">
+            Last LogIn:{" "}
+            {moment(userFromDB.timestampNow).format("MMMM Do YYYY, h:mm:ss a")}
           </p>
         </div>
       </div>

@@ -58,9 +58,9 @@ const NavBar = () => {
           <NavLink to="/">
             <p>Home</p>
           </NavLink>
-          {/* <NavLink to="/all-jobs">
+          <NavLink to="/all-jobs">
             <p>All Jobs</p>
-          </NavLink> */}
+          </NavLink>
           {user && (
             <>
               {/* <NavLink to="/add-a-job">

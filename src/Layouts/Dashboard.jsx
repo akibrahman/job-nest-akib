@@ -69,7 +69,7 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li className="text-[#fff] font-medium">
-                  <NavLink to="/dashboard/all-jobs">
+                  <NavLink to="/dashboard/all-jobs-admin">
                     <FaUserGroup />
                     All Jobs
                   </NavLink>

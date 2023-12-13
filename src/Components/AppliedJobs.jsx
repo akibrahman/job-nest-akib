@@ -1,9 +1,8 @@
-import moment from "moment";
-import { useContext, useEffect, useRef, useState } from "react";
-import { Helmet } from "react-helmet";
-// import { usePDF } from "react-to-pdf";
 import { motion } from "framer-motion";
-import generatePDF, { Margin, Resolution } from "react-to-pdf";
+import moment from "moment";
+import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { usePDF } from "react-to-pdf";
 import useAxios from "../Hooks/useAxios";
 import { AuthContext } from "./AuthProvider";
 import loader from "/infinite.svg";
@@ -11,8 +10,8 @@ import loader from "/infinite.svg";
 const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
   const axiosInstance = useAxios();
-  const targetRef = useRef();
-  //   const { toPDF, targetRef } = usePDF({ filename: "AppliedJobs.pdf" });
+  // const targetRef = useRef();
+  const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
   const categories = ["On Site", "Remote", "Hybrid", "Part Time"];
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [jobs, setJobs] = useState(null);
@@ -40,15 +39,15 @@ const AppliedJobs = () => {
     setFilteredJobs(filteredJobs);
   };
   //! PDF
-  const options = {
-    method: "open",
-    resolution: Resolution.HIGH,
-    page: {
-      margin: Margin.MEDIUM,
-      format: "A4",
-      orientation: "portrait",
-    },
-  };
+  // const options = {
+  //   method: "open",
+  //   resolution: Resolution.HIGH,
+  //   page: {
+  //     margin: Margin.MEDIUM,
+  //     format: "A4",
+  //     orientation: "portrait",
+  //   },
+  // };
   return (
     <div className="mb-52 w-[90%]">
       <Helmet>
@@ -62,7 +61,7 @@ const AppliedJobs = () => {
           </p>
           <div className="flex items-center justify-center gap-5 mt-6">
             <button
-              onClick={() => generatePDF(targetRef, options)}
+              onClick={() => toPDF()}
               className="bg-green-500 px-3 py-1 rounded-full text-white duration-300 active:scale-90"
             >
               Download PDF

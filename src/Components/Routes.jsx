@@ -5,6 +5,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import HomePage from "../Pages/HomePage";
 import AddJob from "./AddJob";
 import AllJobs from "./AllJobs";
+import AllJobsAdmin from "./AllJobsAdmin";
 import AppliedJobs from "./AppliedJobs";
 import Blog from "./Blog";
 import EditJob from "./EditJob";
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage></HomePage>,
+      },
+      {
+        path: "all-jobs",
+        element: <AllJobs></AllJobs>,
       },
       {
         path: "/login",
@@ -86,8 +91,8 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "all-jobs",
-        element: <AllJobs></AllJobs>,
+        path: "all-jobs-admin",
+        element: <AllJobsAdmin></AllJobsAdmin>,
       },
       //! USER
       {

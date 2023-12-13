@@ -85,9 +85,9 @@ const AddJob = () => {
                   autoClose: 2000,
                 });
                 spinner.current.classList.add("hidden");
-                data.reset();
-                setBannerImgPreview(null);
-                setCompanyImgPreview(null);
+                // data.reset();
+                // setBannerImgPreview(null);
+                // setCompanyImgPreview(null);
               })
               .catch((error) => {
                 console.log(error);

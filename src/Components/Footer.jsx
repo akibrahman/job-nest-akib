@@ -1,9 +1,11 @@
 import { AiOutlineGoogle } from "react-icons/ai";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa6";
+import useAxios from "../Hooks/useAxios";
 import logo from "/logo.png";
 
 const Footer = () => {
+  const axiosInstance = useAxios();
   return (
     <footer className="flex flex-col md:flex-row gap-10 md:gap-0 items-center py-20 px-8 lg:px-20 bg-gradient-to-r from-theme to-theme2">
       <div className="w-[90%] md:w-[40%] space-y-5">
@@ -17,7 +19,13 @@ const Footer = () => {
             className=" border-2 bg-transparent px-6 py-2 rounded-full"
             type="email"
           />
-          <button className="font-semibold bg-white px-3 py-1 rounded-full">
+          <button
+            onClick={async () => {
+              const res = await axiosInstance.post("/test-schema");
+              console.log(res.data);
+            }}
+            className="font-semibold bg-white px-3 py-1 rounded-full"
+          >
             Subscribe
           </button>
         </div>
